@@ -84,7 +84,7 @@
 
         .search-bar input:focus {
             box-shadow: 0 0 16px rgba(255, 105, 180, 0.8), 0 0 16px rgba(138, 43, 226, 0.8);
-        }
+       }
 
         .message {
             font-size: 24px;
@@ -259,20 +259,7 @@
                 window.location.href = button.getAttribute('data-url');
             });
         });
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Redirect function for buttons
-        document.querySelectorAll('.button').forEach(button => {
-            button.addEventListener('click', () => {
-                const url = button.getAttribute('data-url');
-                window.location.href = url;
-            });
-        });
-
-        // Redirect function for contact text
-        document.getElementById('contact-us').addEventListener('click', () => {
-            window.location.href = 'https://example.com/contact';
-        });
+        
     </script>
 </body>
 </html>

@@ -238,6 +238,27 @@
     </footer>
 
     <script>
+        document.getElementById('search-input').addEventListener('input', function () {
+            const query = this.value.toLowerCase();
+            const buttons = document.querySelectorAll('.button');
+            
+            buttons.forEach(button => {
+                const title = button.querySelector('.title').textContent.toLowerCase();
+                const subtitle = button.querySelector('.subtitle').textContent.toLowerCase();
+                
+                if (title.includes(query) || subtitle.includes(query)) {
+                    button.style.display = '';
+                } else {
+                    button.style.display = 'none';
+                }
+            });
+        });
+
+        document.querySelectorAll('.button').forEach(button => {
+            button.addEventListener('click', () => {
+                window.location.href = button.getAttribute('data-url');
+            });
+        });
         document.getElementById('year').textContent = new Date().getFullYear();
 
         // Redirect function for buttons

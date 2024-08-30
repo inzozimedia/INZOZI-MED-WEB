@@ -178,6 +178,9 @@
     </header>
 
     <main>
+         <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search...">
+        </div>
         <p class="message">,.Explore a vast variety of options.,</p>
         <div class="button-grid">
             <div class="button button-1" data-url=" https://inzozimedia.github.io/M.E.D-Videos/">
@@ -258,6 +261,20 @@
             button.addEventListener('click', () => {
                 window.location.href = button.getAttribute('data-url');
             });
+        });
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Redirect function for buttons
+        document.querySelectorAll('.button').forEach(button => {
+            button.addEventListener('click', () => {
+                const url = button.getAttribute('data-url');
+                window.location.href = url;
+            });
+        });
+
+        // Redirect function for contact text
+        document.getElementById('contact-us').addEventListener('click', () => {
+            window.location.href = 'https://example.com/contact';
         });
         
     </script>

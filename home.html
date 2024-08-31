@@ -85,15 +85,56 @@
         .search-bar input:focus {
             box-shadow: 0 0 16px rgba(255, 105, 180, 0.8), 0 0 16px rgba(138, 43, 226, 0.8);
        }
+	   .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px; /* Add some spacing between the button containers */
+}
 
-        .message {
-            font-size: 24px;
-            margin-bottom: 40px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            color: #fff;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        }
+#musicButton {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: none;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-right: 10px; /* Add spacing between the music button and the next button */
+}
+
+.button-image {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+#musicButton:hover {
+    background-color: darkblue;
+}
+
+.message {
+    font-size: 24px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* New class for horizontal alignment of buttons */
+.button-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* This allows the buttons to wrap to the next line if the screen is too narrow */
+}
+
 
         .button-grid {
             display: grid;
@@ -173,6 +214,9 @@
     </style>
 </head>
 <body>
+ 
+
+    <audio id="audioPlayer"></audio>
     <header>
         <div class="title">INZOZI MED WEB</div>
         <div class="contact" id="contact-us">
@@ -182,11 +226,18 @@
     </header>
 
     <main>
-         <div class="search-bar">
+         <div class="search-bar">                                                                                     
             <input type="text" id="search-input" placeholder="Try search...">
-        </div>
+        </div> 
+		<div class="button-container">
+        <button id="musicButton">
+            <img src="your-image.png" alt="Music Icon" class="button-image">
+            <span id="musicText">Track 1</span>
+        </button>
+    </div>
         <p class="message">.Explore a vast variety of options.</p>
         <div class="button-grid">
+		
             <div class="button button-1" data-url=" https://inzozimedia.github.io/M.E.D-Videos/">
                 <img src="image/med.png" alt="Photo 1">
                 <div class="button-text">
@@ -294,7 +345,39 @@
         document.getElementById('contact-us').addEventListener('click', () => {
             window.location.href = 'https://example.com/contact';
         });
-        
+        const tracks = [
+    { name: "Track 1", src: "track1.mp3" },
+    { name: "Track 2", src: "track2.mp3" },
+    { name: "Track 3", src: "track3.mp3" },
+];
+
+let currentTrackIndex = 0;
+const audioPlayer = document.getElementById('audioPlayer');
+const musicButton = document.getElementById('musicButton');
+const musicText = document.getElementById('musicText');
+
+// Set the audio player to loop the current track
+audioPlayer.loop = true;
+
+musicButton.addEventListener('click', () => {
+    // Increment the track index and loop back if it exceeds the array length
+    currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+    
+    // Update the audio source and the text
+    audioPlayer.src = tracks[currentTrackIndex].src;
+    musicText.textContent = tracks[currentTrackIndex].name;
+
+    // Play the selected track
+    audioPlayer.play();
+});
+
+// Start playing the first track on page load
+window.onload = () => {
+    audioPlayer.src = tracks[0].src;
+    musicText.textContent = tracks[0].name;
+    audioPlayer.play();
+};
+
     </script>
    
 </body>

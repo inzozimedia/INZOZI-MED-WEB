@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up / Login</title>
+    <!-- Include Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            background: url('back.PNG') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .auth-box {
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            backdrop-filter: blur(3px); /* Apply blur effect */
+            padding: 30px;
+            border-radius: 20px; /* More rounded corners for the box */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+        .title {
+            color: #000; /* Change text color for better contrast */
+            font-size: 40px; /* Adjust font size */
+            margin-bottom: 20px;
+             font-family: 'Pirata One', serif; /* Apply Roboto font */
+        }
+        .auth-box input {
+            width: 97%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 12px; /* More rounded corners for inputs */
+            font-size: 16px;
+        }
+        .text {
+            margin-top: 15px;
+            font-size: 14px;
+            color: orange;
+        }
+        .auth-box button {
+            background-color: #003366;
+            color: white;
+            padding: 8px; /* Smaller padding */
+            margin-top: 20px;
+            border: none;
+            border-radius: 12px; /* More rounded corners for the button */
+            cursor: pointer;
+            font-size: 14px; /* Smaller font size */
+            width: 55%;
+        }
+        .auth-box button:hover {
+            background-color: #005a9e;
+        }
+        #message {
+            margin-top: 15px;
+            font-size: 14px;
+            color: red;
+        }
+        .info-text {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-box" id="authBox">
+        <div class="title">I . M . W<br>registration</div>
+        <input type="text" id="username" placeholder="Username">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button id="sendButton">SUBMIT</button>
+        <div id="message"></div>
+        <div class="info-text">INZOZI MED WEB by MKB20/24</div>
+         <div class="text">This is the first and last time you may see this form ,so give full information.</div>
+    </div>
+    </div>
+
+    <!-- Supabase integration script -->
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+        const supabaseUrl = 'https://yxpteinabnrwckbrtkcr.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl4cHRlaW5hYm5yd2NrYnJ0a2NyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjUwOTEyMjYsImV4cCI6MjA0MDY2NzIyNn0.RW9ZWejT73lq2ZB0vVX4zeXF6HOFwp2x6HTZddp2AI8';
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
+        let isLoginMode = false;
+
+        // Check if user is authenticated and redirect
+        async function checkAuth() {
+            // Check localStorage for registration status
+            const hasRegistered = localStorage.getItem('hasRegistered');
+            if (hasRegistered === 'true') {
+                // Redirect to main content if already registered
+                window.location.href = '/main-content.html'; // Adjust this URL as needed
+                return;
+            }
+
+            // Check Supabase for user authentication
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+                localStorage.setItem('hasRegistered', 'true'); // Set flag indicating user has registered
+                window.location.href = '/main-content.html'; // Redirect to main content
+            }
+        }
+
+        document.getElementById('sendButton').addEventListener('click', async function() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const username = !isLoginMode ? document.getElementById('username').value : null;
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = '';
+
+            if (isLoginMode) {
+                // Log in the user using Supabase
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+                if (error) {
+                    console.error('Error logging in:', error.message);
+                    messageDiv.textContent = error.message.includes('rate limit') ? 'Login Error: Too many attempts. Please wait and try again later.' : `Login Error: ${error.message}`;
+                } else {
+                    console.log('User logged in:', data.user);
+                    messageDiv.style.color = 'green';
+                    messageDiv.textContent = 'Login successful!';
+                    localStorage.setItem('hasRegistered', 'true'); // Set flag indicating user has registered
+                    window.location.href = '/main-content.html'; // Redirect to main content
+                }
+            } else {
+                // Sign up the user using Supabase
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password,
+                    options: {
+                        data: {
+                            username: username
+                        }
+                    }
+                });
+                if (error) {
+                    console.error('Error signing up:', error.message);
+                    messageDiv.textContent = error.message.includes('rate limit') ? 'Sign-up Error: Too many attempts. Please wait and try again later.' : `Sign-up Error: ${error.message}`;
+                } else {
+                    console.log('User signed up:', data.user);
+                    messageDiv.style.color = 'green';
+                    messageDiv.textContent = 'Sign-up successful! Please check your email to confirm.';
+                    localStorage.setItem('hasRegistered', 'true'); // Set flag indicating user has registered
+                    window.location.href = '/main-content.html'; // Redirect to main content
+                }
+            }
+        });
+
+        // Initial authentication check when the page loads
+        checkAuth();
+    </script>
+</body>
+</html>

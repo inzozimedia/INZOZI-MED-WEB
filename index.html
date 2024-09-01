@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <style>
         body {
-            background: url('back.PNG') no-repeat center center fixed;
+            background: url('image/back.PNG') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -157,7 +157,7 @@
                     messageDiv.style.color = 'green';
                     messageDiv.textContent = 'Sign-up successful! Please check your email to confirm.';
                     localStorage.setItem('hasRegistered', 'true'); // Set flag indicating user has registered
-                    window.location.href = '/main-content.html'; // Redirect to main content
+                    window.location.href = 'main.html'; // Redirect to main content
                 }
             }
         });

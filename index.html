@@ -228,7 +228,7 @@
         <div class="right-side">
             <h1>WELCOME!</h1>
             <p>Welcome everyone to the future of web experience. Let's dive in!</p>
-            <button class="continue-button" id="continueButton">Continue</button>
+            <button class="continue-button" openon click='home.html' id="continueButton">Continue</button>
         </div>
     </div>
 
@@ -252,7 +252,7 @@
 
             document.getElementById('continueButton').addEventListener('click', () => {
                 document.getElementById('splashPage').style.display = 'none'; // Hide splash page
-                window.location.href = ('home.html'); // Redirect to home page
+                window.location.href = 'home.html'; // Redirect to home page
             });
 
             document.getElementById('sendButton').addEventListener('click', async () => {

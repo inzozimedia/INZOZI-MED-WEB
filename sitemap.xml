@@ -3,13 +3,12 @@
   <url>
     <loc>https://inzozi-med-web.vercel.app/index.html</loc>
     <lastmod>2024-09-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.00</priority>
   </url>
-   <url>
+  <url>
     <loc>https://inzozi-med-web.vercel.app/home.html</loc>
     <lastmod>2024-09-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <priority>0.80</priority>
   </url>
+  <!-- Add more URLs as needed -->
 </urlset>

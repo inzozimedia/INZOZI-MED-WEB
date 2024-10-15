@@ -1,437 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script id="IPCLICKY_ANALYTICS" src="//sdk.ipclicky.com/ptag/js"></script>
-<script>IPCLICKY.ptag({id:"3Js2fSEidURuZx63",hashMode:true})</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INZOZI MED WEB</title>
+    <title>INZOZI MED WEB Search</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <meta name="description" content="Discover the future of web experiences with INZOZI MED WEB by MKB20/24. Join us and explore innovative digital solutions today!">
-<style>
+    <meta name="description" content="Explore and search with INZOZI MED WEB">
+    <style>
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #1a237e 40%, #ffffff 20%, #000000 40%);
-            background-size: 400% 400%;
-            animation: gradientShift 10s ease infinite;
-            color: #fff;
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
         }
 
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        .title {
-            font-size: 32px;
-            color: skyblue;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        .contact {
-            text-align: right;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .contact p {
-            margin: 0;
-            color: #fff;
-        }
-
-        main {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            flex-grow: 1;
-            padding: 40px;
             text-align: center;
+            margin-bottom: 20px;
         }
+
+        .logo {
+            margin-top: 50px;
         }
 
         .search-bar {
+            display: flex;
+            justify-content: center;
             width: 100%;
             max-width: 600px;
-            margin-bottom: 40px;
-            position: relative;
         }
 
         .search-bar input {
             width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 20px;
-            border: 2px solid transparent;
+            padding: 14px;
+            font-size: 18px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
             outline: none;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 0 8px rgba(255, 105, 180, 0.5), 0 0 8px rgba(138, 43, 226, 0.5);
-            transition: box-shadow 0.5s ease;
+            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+            transition: box-shadow 0.3s ease;
         }
 
         .search-bar input:focus {
-            box-shadow: 0 0 16px rgba(255, 105, 180, 0.8), 0 0 16px rgba(138, 43, 226, 0.8);
-       }
-	   .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px; /* Add some spacing between the button containers */
-}
-
-#musicButton {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    border-radius: 50px;
-    border: none;
-    background-color: blue;
-    color: white;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    margin-right: 10px; /* Add spacing between the music button and the next button */
-}
-
-.button-image {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-}
-
-#musicButton:hover {
-    background-color: darkblue;
-}
-
-.message {
-    font-size: 24px;
-    margin-bottom: 40px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: #fff;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-/* New class for horizontal alignment of buttons */
-.button-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; /* This allows the buttons to wrap to the next line if the screen is too narrow */
-}
-
-
-        .button-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            grid-gap: 30px;
-            max-width: 1200px;
-            width: 100%;
+            box-shadow: 0 1px 8px rgba(32, 33, 36, 0.4);
         }
 
-        .button {
-            width: 100%;
-            height: 200px;
-            border-radius: 16px;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            padding-left: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #fff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        .search-bar button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            font-size: 14px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            background-color: #f8f9fa;
             cursor: pointer;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4); /* Default gradient */
+            transition: background-color 0.3s ease;
         }
 
-        .button:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+        .search-bar button:hover {
+            background-color: #e8e9ea;
         }
 
-        .button img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-right: 15px;
-            object-fit: cover;
+        .search-results {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+            text-align: left;
         }
 
-        .button-text {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+        .search-results .result {
+            padding: 10px 0;
+            border-bottom: 1px solid #dfe1e5;
         }
 
-        .button-text .title {
-            font-size: 20px;
+        .search-results .result a {
+            color: #1a0dab;
+            font-size: 18px;
+            text-decoration: none;
         }
 
-        .button-text .subtitle {
-            font-size: 16px;
+        .search-results .result a:hover {
+            text-decoration: underline;
         }
 
-        .button-1 { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
-        .button-2 { background: linear-gradient(45deg, #a18cd1, #fbc2eb); }
-        .button-3 { background: linear-gradient(45deg, #fbc2eb, #a6c1ee); }
-        .button-4 { background: linear-gradient(45deg, #ffecd2, #fcb69f); }
-        .button-5 { background: linear-gradient(45deg, #a8edea, #fed6e3); }
-        .button-6 { background: linear-gradient(45deg, #f6d365, #fda085); }
-        .button-7 { background: linear-gradient(45deg, #f6e365, #fdb085); }
-        .button-8 { background: linear-gradient(45deg, #fbc2eb, #fad0c4); }
-        .button-9 { background: linear-gradient(45deg, #000000 0%, #FF0000 100%); }
-	.button-10 { background: linear-gradient(45deg, #fd353, #ff9a9e); }
-        .button-11 { background: linear-gradient(45deg, #a18cd1, #fbc200); }
-	.button-12 { background: linear-gradient(45deg, #ffecd1, #fcb68f); }
-        .button-13 { background: linear-gradient( #000000, #ffffff, #ffff00, #87CEEB); }
-
-
-
+        .search-results .result p {
+            font-size: 14px;
+            color: #4d5156;
+        }
 
         footer {
             text-align: center;
-            padding: 20px 40px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
-            font-size: 16px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -1px 6px rgba(32, 33, 36, 0.28);
         }
     </style>
 </head>
 <body>
- 
 
-    <audio id="audioPlayer"></audio>
-    <header>
-        <div class="title">INZOZI MED WEB</div>
-        <div class="contact" id="contact-us">
-            <p>Contact Us</p>
-            <p>MADE by MKB20/24</p>
-        </div>
-    </header>
-
-    <main>
-         <div class="search-bar">                                                                                     
-            <input type="text" id="search-input" placeholder="Try search...">
-        </div> 
-		<div class="button-container">
-        <button id="musicButton">
-            <img src="image/ms.PNG" alt="Music Icon" class="button-image">
-            <span id="musicText">Track 1</span>
-        </button>
+<header>
+    <div class="logo">
+        <h1>INZOZI MED WEB</h1> <!-- Replace with logo image if needed -->
     </div>
-        <p class="message">.Explore a vast variety of options.</p>
-        <div class="button-grid">
-		
-            <div class="button button-1" data-url=" https://inzozimedia.github.io/M.E.D-Videos/">
-                <img src="image/med.png" alt="Photo 1">
-                <div class="button-text">
-                    <span class="title">M.E.D Videos</span>
-                    <span class="subtitle">Watch the most and best videos<br>of different software tutorial's<br>like blender,AI,Godot,...</span>
-                </div>
-            </div>
-            <div class="button button-2" data-url="https://inzozimedia.github.io/games-MED/
-">
-                <img src="image/games.png" alt="Photo 2">
-                <div class="button-text">
-                    <span class="title">GAMES</span>
-                    <span class="subtitle">PLAY NOW !<br>The most popular 2D games.</span>
-                </div>
-            </div>
-            <div class="button button-3" data-url="https://sites.google.com/view/neda-imw/neda">
-                <img src="image/neda.png" alt="Photo 3">
-                <div class="button-text">
-                    <span class="title">NEDA</span>
-                    <span class="subtitle">You want to talk or<br>study with an AI you may<br>use our new* released for all your<br>TASK</span>
-                </div>
-            </div>
-            <div class="button button-4" data-url="https://inzozimedia.github.io/FLACK-P.R/">
-                <img src="image/flack.png" alt="Photo 4">
-                <div class="button-text">
-                    <span class="title">FLACK P.R</span>
-                    <span class="subtitle">Edit your photo by adjustements.</span>
-                </div>
-            </div>
-            <div class="button button-5" data-url="https://inzozimedia.github.io/sport-bet/">
-                <img src="image/bet.PNG" alt="Photo 5">
-                <div class="button-text">
-                    <span class="title">BET,CASINO,...</span>
-                    <span class="subtitle">Bet for different types of Team's, Play the most popular  </span>
-                </div>
-            </div>
-            <div class="button button-6" data-url="  https://inzozimedia.github.io/Contact-Us/">
-                <img src="image/Contacts.png" alt="Photo 6">
-                <div class="button-text">
-                    <span class="title">CONTACT US...</span>
-                    <span class="subtitle">Call or Email the main<br>creator of the site<br>And if you are generous you can DONATE him.</span>
-                </div>
-                </div>
-            <div class="button button-7" data-url="https://inzozimedia.github.io/MULA-s/">
-                <img src="image/mulas.PNG" alt="Photo 7">
-                <div class="button-text">
-                    <span class="title">MULAS</span>
-                    <span class="subtitle">Earn money with the best secure and easy way's approved by us.</span>
-                </div>
-            </div>
-            <div class="button button-8" data-url="https://createdare.com/friendshipdare/#google_vignette">
-                <img src="image/fr.PNG" alt="Photo 8">
-                <div class="button-text">
-                    <span class="title">FRIEND's Challenge</span>
-                    <span class="subtitle">Challenge your friend to test if he/she know you by quiz.</span>
-                </div>
-	</div>
-            <div class="button button-13" data-url=" https://alain656.github.io/MIC-WALLPAPERS/">
-                <img src="image/mic.PNG" alt="Photo 13">
-		<div class="left-text">@by<br>D.A.B</div>
-                <div class="button-text">
-                    <span class="title">Mic Wallpapers</span>
-                    <span class="subtitle">An easy, user-friendly website to download quality wallpapers for laptop, desktop and tablets.</span>
-                </div>
-		    
-		    
-                 </div>
-            <div class="button button-9" data-url="https://inzozimedia.github.io/vlocks/">
-                <img src="image/ed.PNG" alt="Photo 9">
-                <div class="button-text">
-                    <span class="title">VLOCKS</span>
-                    <span class="subtitle">Write html,css,java scripts codes,edit and even preview them .live.</span>
-                </div>
-		    </div>
-		    <div class="button button-12" data-url="https://kianfab.github.io/RUSIC/">
-                <img src="image/rusic.PNG" alt="Photo 12">
-		<div class="left-text">@by<br>KIANFAB</div>
-                <div class="button-text">
-                    <span class="title">RUSIC</span>
-                    <span class="subtitle">Lissen to all rwandan music..</span>
-		    </div>
-		</div>
-            <div class="button button-11" data-url="https://inzozimedia.github.io/movie-base/">
-                <img src="image/ser.PNG" alt="Photo 11">
-                <div class="button-text">
-                    <span class="title">MOVIE BASE</span>
-                    <span class="subtitle">Watch all new movies out now and even it includes your favorite.</span>
-                </div>
-		     </div>
-            <div class="button button-10" data-url="https://inzozimedia.github.io/IMW-PUBLISH/">
-                <img src="image/ser.PNG" alt="Photo 10">
-		     <div class="left-text">@by<br>BTEM</div>
-                <div class="button-text">
-                    <span class="title">PUBLISH</span>
-                    <span class="subtitle">Deploy your own site in Inzozi Med Web-blocks ,Earn and manage user's ineraction.</span>
-                </div>
-		         
-        </div>
-</div>
-    </main>
+</header>
 
-    <footer>
-        <p>AFRICA|Made by BTEM.All rights reserved &copy; <span id="year"></span></p>
-    </footer>
+<main>
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search INZOZI MED WEB...">
+        <button id="search-button">Search</button>
+    </div>
 
-    <script>
-        document.getElementById('search-input').addEventListener('input', function () {
-            const query = this.value.toLowerCase();
-            const buttons = document.querySelectorAll('.button');
-            
-            buttons.forEach(button => {
-                const title = button.querySelector('.title').textContent.toLowerCase();
-                const subtitle = button.querySelector('.subtitle').textContent.toLowerCase();
-                
-                if (title.includes(query) || subtitle.includes(query)) {
-                    button.style.display = '';
-                } else {
-                    button.style.display = 'none';
-                }
+    <div class="search-results" id="search-results"></div>
+</main>
+
+<footer>
+    <p> BTEM</p>
+</footer>
+
+<script>
+    // Array of background image URLs
+    const backgrounds = [
+        'url("image/p1.jpg")',
+        'url("image/p2.jpg")',
+        'url("image/p3.jpg")'
+    ];
+
+    let currentBackgroundIndex = 0;
+
+    // Function to change the background
+    function changeBackground() {
+        document.body.style.backgroundImage = backgrounds[currentBackgroundIndex];
+        currentBackgroundIndex = (currentBackgroundIndex + 1) % backgrounds.length; // Cycle through the backgrounds
+    }
+
+    // Set initial background and start the interval for changing backgrounds every 5 minutes
+    changeBackground();
+    setInterval(changeBackground, 300000); // 300000ms = 5 minutes
+
+    // Search functionality
+    document.getElementById('search-button').addEventListener('click', function () {
+        const query = document.getElementById('search-input').value.toLowerCase();
+        const searchResults = document.getElementById('search-results');
+        searchResults.innerHTML = ''; // Clear previous results
+
+        // Dummy data representing search results
+        const data = [
+    {
+        title: 'INZOZI MED Videos',
+        url: 'https://inzozimedia.github.io/M.E.D-Videos/',
+        description: 'Watch the best videos on software tutorials like Blender, AI, Godot, and more.'
+    },
+    {
+        title: 'INZOZI MED Games',
+        url: 'https://inzozimedia.github.io/games-MED/',
+        description: 'Play the most popular 2D games now.'
+    },
+    {
+        title: 'NEDA',
+        url: 'https://sites.google.com/view/neda-imw/neda',
+        description: 'You want to talk or study with an AI. Use our new release for all your tasks.'
+    },
+    {
+        title: 'FLACK P.R',
+        url: 'https://inzozimedia.github.io/FLACK-P.R/',
+        description: 'Edit your photo by adjustments.'
+    },
+    {
+        title: 'BET, CASINO,...',
+        url: 'https://inzozimedia.github.io/sport-bet/',
+        description: 'Bet for different types of teams and play the most popular games.'
+    },
+    {
+        title: 'CONTACT US...',
+        url: 'https://inzozimedia.github.io/Contact-Us/',
+        description: 'Call or email the main creator of the site. If you are generous, you can donate to him.'
+    },
+    {
+        title: 'MULAS',
+        url: 'https://inzozimedia.github.io/MULA-s/',
+        description: 'Earn money with the best secure and easy ways approved by us.'
+    },
+    {
+        title: 'FRIEND\'s Challenge',
+        url: 'https://createdare.com/friendshipdare/#google_vignette',
+        description: 'Challenge your friend to test if they know you by quiz.'
+    },
+    {
+        title: 'Mic Wallpapers',
+        url: 'https://alain656.github.io/MIC-WALLPAPERS/',
+        description: 'An easy, user-friendly website to download quality wallpapers for laptops, desktops, and tablets.'
+    },
+    {
+        title: 'VLOCKS',
+        url: 'https://inzozimedia.github.io/vlocks/',
+        description: 'Write HTML, CSS, and JavaScript code, edit, and even preview them live.'
+    },
+    {
+        title: 'RUSIC',
+        url: 'https://kianfab.github.io/RUSIC/',
+        description: 'Listen to all Rwandan music.'
+    },
+    {
+        title: 'MOVIE BASE',
+        url: 'https://inzozimedia.github.io/movie-base/',
+        description: 'Watch all new movies and even your favorites.'
+    },
+    {
+        title: 'PUBLISH',
+        url: 'https://inzozimedia.github.io/IMW-PUBLISH/',
+        description: 'Deploy your own site on Inzozi Med Web-blocks, earn, and manage user interactions.'
+    }
+]
+
+
+        // Filter results based on query
+        const filteredResults = data.filter(item =>
+            item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query)
+        );
+
+        // Display filtered results
+        if (filteredResults.length > 0) {
+            filteredResults.forEach(item => {
+                const resultDiv = document.createElement('div');
+                resultDiv.classList.add('result');
+
+                const resultLink = document.createElement('a');
+                resultLink.href = item.url;
+                resultLink.textContent = item.title;
+
+                const resultDescription = document.createElement('p');
+                resultDescription.textContent = item.description;
+
+                resultDiv.appendChild(resultLink);
+                resultDiv.appendChild(resultDescription);
+
+                searchResults.appendChild(resultDiv);
             });
-        });
+        } else {
+            const noResult = document.createElement('p');
+            noResult.textContent = 'No results found.';
+            searchResults.appendChild(noResult);
+        }
+    });
+</script>
 
-        document.querySelectorAll('.button').forEach(button => {
-            button.addEventListener('click', () => {
-                window.location.href = button.getAttribute('data-url');
-            });
-        });
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Redirect function for buttons
-        document.querySelectorAll('.button').forEach(button => {
-            button.addEventListener('click', () => {
-                const url = button.getAttribute('data-url');
-                window.location.href = url;
-            });
-        });
-
-        // Redirect function for contact text
-        document.getElementById('contact-us').addEventListener('click', () => {
-            window.location.href = 'https://example.com/contact';
-        });
-        const tracks = [
-    { name: "Tap to PLAY", src: "noe.mp3" },
-    { name: "...CORAL", src: "music/coral.mp3" },
-    { name: "Tonere", src: "music/tonere.mp3" },
-    { name: "...CUTE", src: "music/cute.mp3" },
-    { name: "Tap to PLAY", src: "track2.mp3" },
-    { name: "PUBG", src: "music/pubg.mp3" },
-    { name: "IPIANO", src: "music/koma.mp3" },
-    { name: "PIANO", src: "music/piano1.mp3" },
-    { name: "Dernier Dance", src: "music/dance.mp3" },
-    { name: "Tap to PLAY", src: "track2.mp3" },
-    { name: "LA LA L.", src: "music/lalala.mp3" },
-    { name: "SLAY", src: "music/slay.mp3" },
-    { name: "0231", src: "music/zeze.mp3" },
-    
-];
-
-let currentTrackIndex = 0;
-const audioPlayer = document.getElementById('audioPlayer');
-const musicButton = document.getElementById('musicButton');
-const musicText = document.getElementById('musicText');
-
-// Set the audio player to loop the current track
-audioPlayer.loop = true;
-
-musicButton.addEventListener('click', () => {
-    // Increment the track index and loop back if it exceeds the array length
-    currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-    
-    // Update the audio source and the text
-    audioPlayer.src = tracks[currentTrackIndex].src;
-    musicText.textContent = tracks[currentTrackIndex].name;
-
-    // Play the selected track
-    audioPlayer.play();
-});
-
-// Start playing the first track on page load
-window.onload = () => {
-    audioPlayer.src = tracks[0].src;
-    musicText.textContent = tracks[0].name;
-    audioPlayer.play();
-};
-
-    </script>
-   
 </body>
 </html>

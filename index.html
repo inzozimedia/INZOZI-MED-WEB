@@ -9,7 +9,7 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -17,16 +17,19 @@
             align-items: center;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             transition: background-image 1s ease-in-out;
         }
 
         header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
 
         .logo {
-            margin-top: 50px;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #333;
         }
 
         .search-bar {
@@ -34,53 +37,56 @@
             justify-content: center;
             width: 100%;
             max-width: 600px;
+            margin-top: 20px;
         }
 
         .search-bar input {
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             font-size: 18px;
-            border: 1px solid #dfe1e5;
-            border-radius: 24px;
+            border: 2px solid #dfe1e5;
+            border-radius: 30px;
             outline: none;
-            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
-            transition: box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
         .search-bar input:focus {
-            box-shadow: 0 1px 8px rgba(32, 33, 36, 0.4);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-color: #1a73e8;
         }
 
         .search-bar button {
             margin-left: 10px;
-            padding: 10px 20px;
-            font-size: 14px;
-            border: 1px solid #dfe1e5;
-            border-radius: 24px;
-            background-color: #f8f9fa;
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 30px;
+            background-color: #7f8b9a;
+            color: white;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
         .search-bar button:hover {
-            background-color: #e8e9ea;
+            background-color: #1558c0;
         }
 
         .search-results {
             width: 100%;
             max-width: 600px;
-            margin-top: 20px;
-            text-align: left;
+            margin-top: 30px;
         }
 
         .search-results .result {
-            padding: 10px 0;
+            padding: 15px 0;
             border-bottom: 1px solid #dfe1e5;
         }
 
         .search-results .result a {
             color: #1a0dab;
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: bold;
             text-decoration: none;
         }
 
@@ -91,24 +97,45 @@
         .search-results .result p {
             font-size: 14px;
             color: #4d5156;
+            margin: 5px 0;
+        }
+
+        .error {
+            margin-top: 20px;
+            text-align: center;
+            color: red;
+        }
+
+        .error img {
+            width: 400px; /* Adjust the size as needed */
+            height: auto;
+            display: block;
+            margin: 10px auto;
         }
 
         footer {
             text-align: center;
             padding: 20px;
+            color: #5f6368;
             position: fixed;
             bottom: 0;
             width: 100%;
-            box-shadow: 0 -1px 6px rgba(32, 33, 36, 0.28);
+        }
+
+        footer a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">
-        <h1>INZOZI MED WEB</h1> <!-- Replace with logo image if needed -->
-    </div>
+    <div class="logo">INZOZI MED WEB</div>
 </header>
 
 <main>
@@ -118,18 +145,23 @@
     </div>
 
     <div class="search-results" id="search-results"></div>
+    <div class="error" id="error-message" style="display: none;">
+        <p>ERROR 404 NOT FOUND</p>
+        <img src="image/p5.jpeg" alt="Error image"> <!-- Replace with your error image path -->
+    </div>
 </main>
 
 <footer>
-    <p> BTEM</p>
+    <p>&COPY; <a href="btem.html">BTEM</a></p>
 </footer>
 
 <script>
     // Array of background image URLs
     const backgrounds = [
-        'url("image/p1.jpg")',
-        'url("image/p2.jpg")',
-        'url("image/p3.jpg")'
+        'url("image/p3.jpeg")',
+        'url("image/p2.jpeg")',
+        'url("image/p1.jpeg")',
+        'url("image/p4.jpeg")'
     ];
 
     let currentBackgroundIndex = 0;
@@ -142,83 +174,38 @@
 
     // Set initial background and start the interval for changing backgrounds every 5 minutes
     changeBackground();
-    setInterval(changeBackground, 300000); // 300000ms = 5 minutes
+    setInterval(changeBackground, 30000); // 300000ms = 5 minutes
 
     // Search functionality
     document.getElementById('search-button').addEventListener('click', function () {
         const query = document.getElementById('search-input').value.toLowerCase();
         const searchResults = document.getElementById('search-results');
+        const errorMessage = document.getElementById('error-message');
+        
         searchResults.innerHTML = ''; // Clear previous results
+        errorMessage.style.display = 'none'; // Hide error message
+
+        // Check if input is empty
+        if (!query) {
+            return; // Do nothing if the input is empty
+        }
 
         // Dummy data representing search results
         const data = [
-    {
-        title: 'INZOZI MED Videos',
-        url: 'https://inzozimedia.github.io/M.E.D-Videos/',
-        description: 'Watch the best videos on software tutorials like Blender, AI, Godot, and more.'
-    },
-    {
-        title: 'INZOZI MED Games',
-        url: 'https://inzozimedia.github.io/games-MED/',
-        description: 'Play the most popular 2D games now.'
-    },
-    {
-        title: 'NEDA',
-        url: 'https://sites.google.com/view/neda-imw/neda',
-        description: 'You want to talk or study with an AI. Use our new release for all your tasks.'
-    },
-    {
-        title: 'FLACK P.R',
-        url: 'https://inzozimedia.github.io/FLACK-P.R/',
-        description: 'Edit your photo by adjustments.'
-    },
-    {
-        title: 'BET, CASINO,...',
-        url: 'https://inzozimedia.github.io/sport-bet/',
-        description: 'Bet for different types of teams and play the most popular games.'
-    },
-    {
-        title: 'CONTACT US...',
-        url: 'https://inzozimedia.github.io/Contact-Us/',
-        description: 'Call or email the main creator of the site. If you are generous, you can donate to him.'
-    },
-    {
-        title: 'MULAS',
-        url: 'https://inzozimedia.github.io/MULA-s/',
-        description: 'Earn money with the best secure and easy ways approved by us.'
-    },
-    {
-        title: 'FRIEND\'s Challenge',
-        url: 'https://createdare.com/friendshipdare/#google_vignette',
-        description: 'Challenge your friend to test if they know you by quiz.'
-    },
-    {
-        title: 'Mic Wallpapers',
-        url: 'https://alain656.github.io/MIC-WALLPAPERS/',
-        description: 'An easy, user-friendly website to download quality wallpapers for laptops, desktops, and tablets.'
-    },
-    {
-        title: 'VLOCKS',
-        url: 'https://inzozimedia.github.io/vlocks/',
-        description: 'Write HTML, CSS, and JavaScript code, edit, and even preview them live.'
-    },
-    {
-        title: 'RUSIC',
-        url: 'https://kianfab.github.io/RUSIC/',
-        description: 'Listen to all Rwandan music.'
-    },
-    {
-        title: 'MOVIE BASE',
-        url: 'https://inzozimedia.github.io/movie-base/',
-        description: 'Watch all new movies and even your favorites.'
-    },
-    {
-        title: 'PUBLISH',
-        url: 'https://inzozimedia.github.io/IMW-PUBLISH/',
-        description: 'Deploy your own site on Inzozi Med Web-blocks, earn, and manage user interactions.'
-    }
-]
-
+            { title: 'INZOZI MED Videos', url: 'https://inzozimedia.github.io/M.E.D-Videos/', description: 'Watch the best videos on software tutorials like Blender, AI, Godot, and more.' },
+            { title: 'INZOZI MED Games', url: 'https://inzozimedia.github.io/games-MED/', description: 'Play the most popular 2D games now.' },
+            { title: 'NEDA', url: 'https://sites.google.com/view/neda-imw/neda', description: 'You want to talk or study with an AI. Use our new release for all your tasks.' },
+            { title: 'FLACK P.R', url: 'https://inzozimedia.github.io/FLACK-P.R/', description: 'Edit your photo by adjustments.' },
+            { title: 'BET, CASINO,...', url: 'https://inzozimedia.github.io/sport-bet/', description: 'Bet for different types of teams and play the most popular games.' },
+            { title: 'CONTACT US...', url: 'https://inzozimedia.github.io/Contact-Us/', description: 'Call or email the main creator of the site. If you are generous, you can donate to him.' },
+            { title: 'MULAS', url: 'https://inzozimedia.github.io/MULA-s/', description: 'Earn money with the best secure and easy ways approved by us.' },
+            { title: 'FRIEND\'s Challenge', url: 'https://createdare.com/friendshipdare/#google_vignette', description: 'Challenge your friend to test if they know you by quiz.' },
+            { title: 'Mic Wallpapers', url: 'https://alain656.github.io/MIC-WALLPAPERS/', description: 'An easy, user-friendly website to download quality wallpapers for laptops, desktops, and tablets.' },
+            { title: 'VLOCKS', url: 'https://inzozimedia.github.io/vlocks/', description: 'Write HTML, CSS, and JavaScript code, edit, and even preview them live.' },
+            { title: 'RUSIC', url: 'https://kianfab.github.io/RUSIC/', description: 'Listen to all Rwandan music.' },
+            { title: 'MOVIE BASE', url: 'https://inzozimedia.github.io/movie-base/', description: 'Watch all new movies and even your favorites.' },
+            { title: 'PUBLISH', url: 'https://inzozimedia.github.io/IMW-PUBLISH/', description: 'Deploy your own site on Inzozi Med Web-blocks, earn, and manage user interactions.' }
+        ];
 
         // Filter results based on query
         const filteredResults = data.filter(item =>
@@ -240,13 +227,11 @@
 
                 resultDiv.appendChild(resultLink);
                 resultDiv.appendChild(resultDescription);
-
                 searchResults.appendChild(resultDiv);
             });
         } else {
-            const noResult = document.createElement('p');
-            noResult.textContent = 'No results found.';
-            searchResults.appendChild(noResult);
+            // Show error message if no results are found
+            errorMessage.style.display = 'block';
         }
     });
 </script>

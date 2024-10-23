@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5SNV0FPH1K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5SNV0FPH1K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-5SNV0FPH1K');
-</script>
+      gtag('config', 'G-5SNV0FPH1K');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INZOZI MED WEB Search</title>
@@ -151,6 +151,23 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* Weather box style */
+        .weather-box {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #dfe1e5;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .weather-box p {
+            margin: 5px 0;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -172,6 +189,13 @@
     <div class="error" id="error-message" style="display: none;">
         <p>ERROR 404 NOT FOUND</p>
         <img src="image/p5.jpeg" alt="Error image">
+    </div>
+
+    <!-- Weather Box -->
+    <div class="weather-box" id="weather-box" style="display: none;">
+        <h3>Weather</h3>
+        <p id="temperature"></p>
+        <p id="weather-description"></p>
     </div>
 </main>
 
@@ -213,7 +237,21 @@
         { title: 'IPIANO BEAT HUB', url: 'https://sites.google.com/view/ipiano-beat-hub/trends', description: 'Listen amapiano songs' },
         { title: 'MOVIE BASE', url: 'https://inzozimedia.github.io/movie-base/', description: 'Watch all new movies and even your favorites.' },
         { title: 'PUBLISH', url: 'https://inzozimedia.github.io/IMW-PUBLISH/', description: 'Deploy your own site on Inzozi Med Web-blocks, earn, and manage user interactions.' }       
-            ];
+    ];
+
+    async function fetchWeather() {
+        try {
+            const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-2&longitude=30&hourly=temperature_2m');
+            const data = await response.json();
+            const temperature = data.hourly.temperature_2m[0]; // Get the first hourly temperature
+            document.getElementById('temperature').innerText = `Temperature: ${temperature} °C`;
+            document.getElementById('weather-description').innerText = `Weather data retrieved successfully!`;
+            document.getElementById('weather-box').style.display = 'block'; // Show the weather box
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+            document.getElementById('weather-box').style.display = 'none'; // Hide weather box on error
+        }
+    }
 
     async function fetchWordDefinition(query) {
         const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${query}`);
@@ -234,6 +272,9 @@
         // Show loading bar
         const loadingBar = document.getElementById('loading-bar');
         loadingBar.style.width = '50%';
+
+        // Remove weather data when search button is clicked
+        document.getElementById('weather-box').style.display = 'none';
 
         if (!query) {
             return;
@@ -277,6 +318,10 @@
             loadingBar.style.width = '0%';
         }, 500);
     });
+
+    // Fetch the weather data on page load
+    window.onload = fetchWeather;
+
 </script>
 
 </body>

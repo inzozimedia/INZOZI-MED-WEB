@@ -337,6 +337,37 @@
 
     // Fetch the weather data on page load
     window.onload = fetchWeather;
+    function adjustLayout() {
+        const screenWidth = window.innerWidth;
+
+        // Adjust the search bar and containers for smaller screens
+        const searchBar = document.querySelector('.search-bar');
+        const searchResults = document.querySelector('.search-results');
+        const weatherBox = document.querySelector('.weather-box');
+        const errorImage = document.querySelector('.error img');
+
+        if (screenWidth < 600) {
+            // Smaller screen adjustments
+            searchBar.style.width = '90%';
+            searchResults.style.width = '90%';
+            weatherBox.style.width = '90%';
+            if (errorImage) {
+                errorImage.style.width = '100%';
+            }
+        } else {
+            // Larger screen adjustments
+            searchBar.style.width = '600px';
+            searchResults.style.width = '600px';
+            weatherBox.style.width = '600px';
+            if (errorImage) {
+                errorImage.style.width = '400px';
+            }
+        }
+    }
+
+    // Run adjustLayout initially and on window resize
+    adjustLayout();
+    window.addEventListener('resize', adjustLayout);
 
 </script>
 

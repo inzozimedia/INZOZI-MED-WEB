@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" translate="no">
+<html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5SNV0FPH1K"></script>
@@ -50,33 +50,63 @@
   cursor: pointer;
   z-index: 1000; /* Ensure it stays above other elements */
 }
- /* Pop-up side box style */
- .popup-box {
-            position: fixed;
-            top: 20px;
-            right: 20px;
+  /* Style for popup boxes */
+  .popup-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Space between popups */
+            justify-content: center;
+        }
+
+        .popup-box {
+            position: relative;
             background-color: #f9f9f9;
             border: 1px solid #dfe1e5;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             padding: 20px;
-            max-width: 250px;
+            width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             display: none; /* Hidden by default */
             z-index: 1000;
         }
 
+        .popup-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
         .popup-box p {
-            margin: 0;
             font-size: 16px;
             color: #333;
+            margin-top: 10px;
         }
 
         .close-popup {
-            font-size: 16px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 20px;
             font-weight: bold;
             color: #333;
             cursor: pointer;
-            float: right;
+        }
+
+        /* Adding animation for popup appearance */
+        .popup-box.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         /* Loading bar style */
@@ -212,10 +242,9 @@
 
 <!-- Loading bar -->
 <div id="loading-bar"></div>
-<!-- Pop-up side box -->
-<div class="popup-box" id="popup-box">
-    <span class="close-popup" id="close-popup">&times;</span>
-    <p>Welcome to INZOZI MED WEB!<br>try our new AI search NEDA.</p>
+
+<div class="popup-container" id="popup-container">
+    <!-- Popups will be added dynamically here -->
 </div>
 
 <header>
@@ -249,10 +278,45 @@
 </footer>
 
 <script>
-     // Display the pop-up box after 4 seconds
-     setTimeout(() => {
-        document.getElementById('popup-box').style.display = 'block';
-    }, 4000);
+      // Function to create a new popup box with an image
+      function createPopupBox(imageFilename, message) {
+            const popupBox = document.createElement('div');
+            popupBox.classList.add('popup-box');
+            popupBox.innerHTML = `
+                <span class="close-popup">&times;</span>
+                <img src="${imageFilename}" alt="Popup Image">
+                <p>${message}</p>
+            `;
+            
+            // Append the popup box to the container
+            document.getElementById('popup-container').appendChild(popupBox);
+
+            // Show the popup with animation
+            setTimeout(() => {
+                popupBox.classList.add('show');
+            }, 100);
+
+            // Close the popup when the close button is clicked
+            popupBox.querySelector('.close-popup').addEventListener('click', () => {
+                popupBox.classList.remove('show');
+                setTimeout(() => {
+                    popupBox.remove();
+                }, 500); // Allow the animation to complete before removing
+            });
+        }
+
+        // Example usage: Adding popups with local images
+        setTimeout(() => {
+            createPopupBox('image1.jpg', 'Welcome to Inzozi Med Web');
+        }, 1000);
+
+        setTimeout(() => {
+            createPopupBox('image2.jpg', 'HELLO');
+        }, 3000);
+
+        setTimeout(() => {
+            createPopupBox('image3.jpg', 'TRY OUR AI NEDA');
+        }, 5000);
     const backgrounds = [
         'url("image/p3.jpeg")',
         'url("image/p2.jpeg")',

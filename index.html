@@ -50,7 +50,34 @@
   cursor: pointer;
   z-index: 1000; /* Ensure it stays above other elements */
 }
+ /* Pop-up side box style */
+ .popup-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #dfe1e5;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 250px;
+            display: none; /* Hidden by default */
+            z-index: 1000;
+        }
 
+        .popup-box p {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .close-popup {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            float: right;
+        }
 
         /* Loading bar style */
         #loading-bar {
@@ -185,6 +212,11 @@
 
 <!-- Loading bar -->
 <div id="loading-bar"></div>
+<!-- Pop-up side box -->
+<div class="popup-box" id="popup-box">
+    <span class="close-popup" id="close-popup">&times;</span>
+    <p>Welcome to INZOZI MED WEB!<br>try our new AI search NEDA.</p>
+</div>
 
 <header>
     <div class="logo">INZOZI MED WEB</div>
@@ -219,6 +251,10 @@
 </footer>
 
 <script>
+     // Display the pop-up box after 4 seconds
+     setTimeout(() => {
+        document.getElementById('popup-box').style.display = 'block';
+    }, 4000);
     const backgrounds = [
         'url("image/p3.jpeg")',
         'url("image/p2.jpeg")',

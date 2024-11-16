@@ -52,10 +52,15 @@
 }
   /* Style for popup boxes */
   .popup-container {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column; /* Stack popups vertically */
             gap: 10px; /* Space between popups */
-            justify-content: center;
+            padding: 10px;
+            z-index: 1000;
         }
 
         .popup-box {
@@ -64,11 +69,12 @@
             border: 1px solid #dfe1e5;
             border-radius: 10px;
             padding: 20px;
-            width: 200px;
+            width: 250px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             display: none; /* Hidden by default */
-            z-index: 1000;
+            animation: slideInRight 0.5s ease;
         }
+
 
         .popup-box img {
             width: 100%;
@@ -307,16 +313,16 @@
 
         // Example usage: Adding popups with local images
         setTimeout(() => {
-            createPopupBox('image1.jpg', 'Welcome to Inzozi Med Web');
-        }, 1000);
+            createPopupBox('image/AI.jpeg', 'search NEDA &<br>use inzozi med Artificial Intelligence.');
+        }, 12000);
 
         setTimeout(() => {
-            createPopupBox('image2.jpg', 'HELLO');
-        }, 3000);
+            createPopupBox('image/SM.jpeg', 'search Popular social media<br>instragram,X,Facebook,Reddit,...');
+        }, 2000);
 
         setTimeout(() => {
-            createPopupBox('image3.jpg', 'TRY OUR AI NEDA');
-        }, 5000);
+            createPopupBox('image/M.jpeg', 'search MULAS & get ideas how you can get money through your own website.');
+        }, 8000);
     const backgrounds = [
         'url("image/p3.jpeg")',
         'url("image/p2.jpeg")',
@@ -347,6 +353,16 @@
         { title: 'VLOCKS', url: 'https://inzozimedia.github.io/vlocks/', description: 'Write HTML, CSS, and JavaScript code, edit, and even preview them live.' },
         { title: 'RUSIC', url: 'https://kianfab.github.io/RUSIC/', description: 'Listen to all Rwandan music.' },
         { title: 'YOUTUBE-official', url: 'https://www.youtube.com/', description: 'Youtube-world of videos.' },
+        { title: 'Facebook', url: 'https://www.facebook.com/', description: 'Connect with friends and the world around you on Facebook.' },
+        { title: 'Instagram', url: 'https://www.instagram.com/', description: 'A simple, fun & creative way to capture, edit & share photos, videos & messages.' },
+        { title: 'X-Twitter', url: 'https://www.twitter.com/', description: 'Join the conversation on Twitter and stay updated on current events.' },
+        { title: 'LinkedIn', url: 'https://www.linkedin.com/', description: 'The world’s largest professional network for career opportunities.' },
+        { title: 'Snapchat', url: 'https://www.snapchat.com/', description: 'Share moments and stay connected with friends on Snapchat.' },
+        { title: 'TikTok', url: 'https://www.tiktok.com/', description: 'Discover and share trending short videos on TikTok.' },
+        { title: 'Pinterest', url: 'https://www.pinterest.com/', description: 'Discover and save ideas for projects, recipes, and more on Pinterest.' },
+        { title: 'Reddit', url: 'https://www.reddit.com/', description: 'Dive into communities discussing virtually any topic on Reddit.' },
+        { title: 'YouTube', url: 'https://www.youtube.com/', description: 'Watch, upload, and share videos with the world on YouTube.' },
+        { title: 'WhatsApp', url: 'https://www.whatsapp.com/', description: 'Stay connected with friends and family through messaging and calls on WhatsApp.' },
         { title: 'LEANTO-francais', url: 'https://inzozimedia.github.io/LAENTO/', description: 'learn basic french in a simple way and effective.' },
         { title: 'FESTUS-online store', url: 'https://sites.google.com/view/basketballequipmentonlineshop/shoes', description: 'Online shopping.' },
         { title: 'IPIANO BEAT HUB', url: 'https://sites.google.com/view/ipiano-beat-hub/trends', description: 'Listen amapiano songs' },

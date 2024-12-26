@@ -1,491 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5SNV0FPH1K"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-5SNV0FPH1K');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-5SNV0FPH1K');
     </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INZOZI MED WEB</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <meta name="description" content="Explore and search with INZOZI MED WEB">
+    <title>INZOZI MED WEB-v1.2.0-Update</title>
     <style>
-        body {
+        /* General reset */
+        * {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f5f7; /* Light gray background */
+            color: #000000; /* Black text color */
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
             min-height: 100vh;
+            padding: 24px;
+            text-align: center;
+            overflow-y: scroll; /* Enable scrolling */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* First slide - height of 600px */
+        .slide-1 {
+            width: 100%;
+            height: 600px;
+            display: flex;
             justify-content: center;
             align-items: center;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            transition: background-image 1s ease-in-out;
+            background-color: #f4f5f7;
+            transition: background-color 2s ease; /* Slowed down transition */
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .logo {
-            font-size: 2.5em;
-            font-weight: 700;
-            color: #333;
-        }
-        .round-image {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 1000; /* Ensure it stays above other elements */
-}
-  /* Style for popup boxes */
-  .popup-container {
-            position: fixed;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column; /* Stack popups vertically */
-            gap: 10px; /* Space between popups */
-            padding: 10px;
-            z-index: 1000;
-        }
-
-        .popup-box {
-            position: relative;
-            background-color: #f9f9f9;
-            border: 1px solid #dfe1e5;
-            border-radius: 10px;
-            padding: 20px;
-            width: 250px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            display: none; /* Hidden by default */
-            animation: slideInRight 0.5s ease;
-        }
-
-
-        .popup-box img {
+        /* Second slide - Favicon and welcome text */
+        .slide-2 {
             width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-
-        .popup-box p {
-            font-size: 16px;
-            color: #333;
-            margin-top: 10px;
-        }
-
-        .close-popup {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-            cursor: pointer;
-        }
-
-        /* Adding animation for popup appearance */
-        .popup-box.show {
-            display: block;
-            animation: slideIn 0.5s ease;
-        }
-
-        @keyframes slideIn {
-            0% {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Loading bar style */
-        #loading-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 4px;
-            background-color: #87CEEB; /* Blue sky color */
-            z-index: 1000;
-            transition: width 0.4s ease;
-        }
-
-        .search-bar {
+            height: 600px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            width: 100%;
-            max-width: 600px;
-            margin-top: 20px;
-        }
-
-        .search-bar input {
-            width: 100%;
-            padding: 15px;
-            font-size: 18px;
-            border: 2px solid #dfe1e5;
-            border-radius: 30px;
-            outline: none;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-
-        .search-bar input:focus {
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            border-color: #1a73e8;
-        }
-
-        .search-bar button {
-            margin-left: 10px;
-            padding: 12px 25px;
-            font-size: 16px;
-            border: none;
-            border-radius: 30px;
-            background-color: #7f8b9a;
-            color: white;
-            cursor: pointer;
+            align-items: center;
+            background-color: #f4f5f7;
             transition: background-color 0.3s ease;
         }
 
-        .search-bar button:hover {
-            background-color: #1558c0;
+        /* Favicon circle style */
+        .favicon-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
         }
 
-        .search-results {
-            width: 100%;
-            max-width: 600px;
-            margin-top: 30px;
-        }
-
-        .search-results .result {
-            padding: 15px 0;
-            border-bottom: 1px solid #dfe1e5;
-        }
-
-        .search-results .result a {
-            color: #1a0dab;
-            font-size: 20px;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .search-results .result a:hover {
-            text-decoration: underline;
-        }
-
-        .search-results .result p {
-            font-size: 14px;
-            color: #4d5156;
-            margin: 5px 0;
-        }
-
-        .error {
+        /* Italicized welcoming text */
+        .welcome-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #333333;
             margin-top: 20px;
-            text-align: center;
-            color: red;
+            transition: color 0.3s ease;
         }
 
-        .error img {
-            width: 400px;
+        /* Slide 3 - Video */
+        .slide-3 {
+            width: 100%;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f5f7;
+        }
+
+        .slide-3 video {
+            width: 90%;
             height: auto;
-            display: block;
-            margin: 10px auto;
+            border-radius: 12px;
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #5f6368;
-            position: fixed;
-            bottom: 0;
+        /* Slide 4 - License Accept */
+        .slide-4 {
             width: 100%;
+            height: 600px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f4f5f7;
+            padding: 20px;
+            transition: background-color 0.3s ease;
+            text-align: left;
         }
 
-        footer a {
-            color: #1a73e8;
+        /* Logo (favicon) on left side */
+        .slide-4 .logo-container {
+            width: 150px;
+            height: 150px;
+        }
+
+        .slide-4 .logo-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        /* Text on right side */
+        .slide-4 .update-text {
+            max-width: 700px;
+            margin-left: 20px;
+        }
+
+        /* Slide 5 - Thank you message */
+        .slide-5 {
+            width: 100%;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f5f7;
+            transition: background-color 0.3s ease;
+        }
+
+        .slide-5 h2 {
+            margin-bottom: 20px;
+        }
+
+        .slide-5 button {
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            background-color: #bfc1c2;
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.925);
+            transition: transform 0.3s ease;
+        }
+
+        .slide-5 button:hover {
+            transform: scale(1.05);
+        }
+
+        .slide-5 .italic-text {
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        /* Slide 6 - Footer */
+        .slide-6 {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f4f5f7;
+            padding: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .slide-6 .footer-logo {
+            width: 150px;
+            height: 150px;
+        }
+
+        .slide-6 .footer-logo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .slide-6 .footer-text {
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .slide-6 .footer-text a {
+            color: #007bff;
             text-decoration: none;
         }
 
-        footer a:hover {
+        .slide-6 .footer-text a:hover {
             text-decoration: underline;
         }
 
-        /* Weather box style */
-        .weather-box {
-            margin-top: 20px;
-            padding: 20px;
-            border: 1px solid #dfe1e5;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
+        .slide-6 .back-to-top {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50%;
+            background-color: #000000;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .weather-box p {
-            margin: 5px 0;
-            font-size: 18px;
+        .slide-6 .back-to-top:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .modal-content input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .modal-content input[type="text"].error {
+            border-color: red;
+        }
+
+        .modal-content button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #000000f3;
+            color: white;
+            cursor: pointer;
+        }
+
+        .modal-content button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Smooth scrolling effect */
+        .update-box::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .update-box::-webkit-scrollbar-thumb {
+            background-color: #ff005d;
+            border-radius: 4px;
+        }
+
+        .update-box::-webkit-scrollbar-track {
+            background-color: #f4f5f7;
+        }
+
+        /* Change background color and text color on scroll */
+        body.scrolled {
+            background-color: #000000; /* Full black background color */
+            color: #ffffff; /* White text color */
+        }
+
+        body.scrolled .slide-1,
+        body.scrolled .slide-2,
+        body.scrolled .slide-3,
+        body.scrolled .slide-4,
+        body.scrolled .slide-5,
+        body.scrolled .slide-6 {
+            background-color: #000000; /* Full black background color */
+        }
+
+        body.scrolled .favicon-container img {
+            transform: scale(1.1); /* Scale up favicon on scroll */
+        }
+
+        body.scrolled .welcome-text,
+        body.scrolled .update-box {
+            color: #ffffff; /* Change text color when scrolled */
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .slide-4 {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .slide-4 .update-text {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+
+            .slide-6 {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .slide-6 .footer-text {
+                margin-top: 20px;
+            }
+
+            .slide-6 .back-to-top {
+                margin-top: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-<!-- Loading bar -->
-<div id="loading-bar"></div>
-
-<div class="popup-container" id="popup-container">
-    <!-- Popups will be added dynamically here -->
+<!-- First Slide -->
+<div class="slide-1">
+    <h1 style="font-size: 50px;">INZOZI MED WEB <BR>v1.2.0 Update</h1>
 </div>
 
-<header>
-    <div class="logo">INZOZI MED WEB</div>
-</header>
+<!-- Second Slide with Favicon and Welcoming Text -->
+<div class="slide-2">
+    <div class="favicon-container">
+        <img src="favicon.ico" alt="Inzozi Favicon">
+    </div>
+    <div class="welcome-text">
+        Welcome to Inzozi Med Web! Discover and explore content with ease.
+    </div>
+</div>
 
-  
+<!-- Third Slide - Video -->
+<div class="slide-3">
+    <video autoplay muted loop>
+        <source src="tuto.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
 
-<main>
-    <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Search...">
-        <button id="search-button">Search</button>
+<!-- Fourth Slide - License Accept -->
+<div class="slide-4">
+    <!-- Logo on Left Side -->
+    <div class="logo-container">
+        <img src="favicon.ico" alt="Logo">
     </div>
 
-    <div class="search-results" id="search-results"></div>
-    <div class="error" id="error-message" style="display: none;">
-        <p>ERROR 404 NOT FOUND</p>
-        <img src="image/p5.jpeg" alt="Error image">
-    </div>
+    <!-- Update Overview Text on Right Side -->
+    <div class="update-text">
+        <h2>Update Overview</h2>
+        <p>
+            We are excited to announce the latest update<br> to INZOZI MED WEB! This upgrade brings several key improvements and new features designed to enhance your experience:
+        </p>
+        <h3>New Features:</h3>
+        <ul>
+            <li>IMAGE & VIDEO SEARCH: There is an integration <br>of different sources to get video's and image's in the search result.</li>
+        </ul>
 
-    <!-- Weather Box -->
-    <div class="weather-box" id="weather-box" style="display: none;">
-        <h3>Weather</h3>
-        <p id="temperature"></p>
-        <p id="weather-description"></p>
-    </div>
-</main>
+        <h3>Bug Fixes:</h3>
+        <ul>
+            <li>Easy and fast website's uploading to<br> increase data sharing.</li>
+            <li>Improved stability and performance<br> across the platform.</li>
+        </ul>
 
-<footer>
-    <p>&COPY; <a href="btem.html">BTEM</a> | <a href="sport.html">FOOTBALL</a> | <a href="news.html">NEWS</a></p>
-</footer>
+        <h3>User Interface Improvements:</h3>
+        <ul>
+            <li>Updated design for better navigation and usability.</li>
+        </ul>
+
+        <p>
+            We highly encourage you to sign up in Inzozi<br> Med Web to get information in the DEVELOPER PORTAL. Thank you for your continued support!
+        </p>
+    </div>
+</div>
+
+<!-- Fifth Slide - Thank You Message -->
+<div class="slide-5">
+    <h2>Thank you for using. Do you want to see this again the next time you come back?</h2>
+    <label>
+        <input type="checkbox" id="dontShowAgain">
+        I don't want to see this again.
+    </label>
+    <button id="amHumanBtn">AM HUMAN</button>
+    <div class="italic-text">Click this button to continue.</div>
+</div>
+
+<!-- Sixth Slide - Footer -->
+<div class="slide-6">
+    <div class="footer-logo">
+        <img src="favicon.ico" alt="Inzozi Favicon">
+    </div>
+    <div class="footer-text">
+        INZOZI MED WEB version 1.2.0 <br>
+        &copy; 2025 Made by <a href="btem.html">btem</a>
+    </div>
+    <button class="back-to-top" onclick="scrollToTop()">&#8679;</button>
+</div>
+
+<!-- Modal -->
+<div id="humanModal" class="modal">
+    <div class="modal-content">
+        <h3 style="color: #000000;">Click "PLAY" and Write what you hear.</h3>
+        <button id="playBtn">PLAY</button>
+        <audio id="humanAudio" src="music/human.mp3"></audio>
+        <input type="text" id="humanInput" placeholder="Enter the text you hear">
+        <button id="continueBtn" disabled>CONTINUE</button>
+    </div>
+</div>
 
 <script>
-      // Function to create a new popup box with an image
-      function createPopupBox(imageFilename, message) {
-            const popupBox = document.createElement('div');
-            popupBox.classList.add('popup-box');
-            popupBox.innerHTML = `
-                <span class="close-popup">&times;</span>
-                <img src="${imageFilename}" alt="Popup Image">
-                <p>${message}</p>
-            `;
-            
-            // Append the popup box to the container
-            document.getElementById('popup-container').appendChild(popupBox);
-
-            // Show the popup with animation
-            setTimeout(() => {
-                popupBox.classList.add('show');
-            }, 100);
-
-            // Close the popup when the close button is clicked
-            popupBox.querySelector('.close-popup').addEventListener('click', () => {
-                popupBox.classList.remove('show');
-                setTimeout(() => {
-                    popupBox.remove();
-                }, 500); // Allow the animation to complete before removing
-            });
+    // Detect scroll and add/remove scrolled class
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            document.body.classList.add('scrolled');
+        } else {
+            document.body.classList.remove('scrolled');
         }
-
-        // Example usage: Adding popups with local images
-        setTimeout(() => {
-            createPopupBox('image/AI.jpeg', 'search NEDA &<br>use inzozi med Artificial Intelligence.');
-        }, 12000);
-
-        setTimeout(() => {
-            createPopupBox('image/SM.jpeg', 'search Popular social media<br>instragram,X,Facebook,Reddit,...');
-        }, 2000);
-
-        setTimeout(() => {
-            createPopupBox('image/M.jpeg', 'search MULAS & get ideas how you can get money through your own website.');
-        }, 8000);
-    const backgrounds = [
-        'url("image/p3.jpeg")',
-        'url("image/p2.jpeg")',
-        'url("image/p1.jpeg")',
-        'url("image/p4.jpeg")'
-    ];
-
-    let currentBackgroundIndex = 0;
-
-    function changeBackground() {
-        document.body.style.backgroundImage = backgrounds[currentBackgroundIndex];
-        currentBackgroundIndex = (currentBackgroundIndex + 1) % backgrounds.length;
-    }
-
-    changeBackground();
-    setInterval(changeBackground, 300000);
-
-    const data = [
-        { title: 'INZOZI MED Videos', url: 'https://inzozimedia.github.io/M.E.D-Videos/', description: 'Watch the best videos on software tutorials like Blender, AI, Godot, and more.' },
-        { title: 'le cercle francais', url: 'https://www.tiktok.com/@lacerclefrancais?is_from_webapp=1&sender_device=pc', description: 'Follow us on tiktok' },
-        { title: 'INZOZI MED Games', url: 'https://inzozimedia.github.io/games-MED/', description: 'Play the most popular 2D games now.' },
-        { title: 'NEDA', url: 'https://sites.google.com/view/neda-imw/neda', description: 'You want to talk or study with an AI. Use our new release for all your tasks.' },
-        { title: 'Photo editor', url: 'https://inzozimedia.github.io/FLACK-P.R/', description: 'Edit your photo by adjustments.' },
-        { title: 'BET, CASINO,...', url: 'https://inzozimedia.github.io/sport-bet/', description: 'Bet for different types of teams and play the most popular games.' },
-        { title: 'CONTACT US...', url: 'https://inzozimedia.github.io/Contact-Us/', description: 'Call or email the main creator of the site. If you are generous, you can donate to him.' },
-        { title: 'MULAS', url: 'https://inzozimedia.github.io/MULA-s/', description: 'Earn money with the best secure and easy ways approved by us.' },
-        { title: 'Mic Wallpapers', url: 'https://alain656.github.io/MIC-WALLPAPERS/', description: 'An easy, user-friendly website to download quality wallpapers for laptops, desktops, and tablets.' },
-        { title: 'VLOCKS', url: 'https://inzozimedia.github.io/vlocks/', description: 'Write HTML, CSS, and JavaScript code, edit, and even preview them live.' },
-        { title: 'RUSIC', url: 'https://kianfab.github.io/RUSIC/', description: 'Listen to all Rwandan music.' },
-        { title: 'E-COMMERCE PRODUCT MARKET', url: 'https://sites.google.com/view/inzozi-med-web/what-can-i-drink', description: 'Practice ONLINE marketing four all your services.' },
-        { title: 'YOUTUBE-official', url: 'https://www.youtube.com/', description: 'Youtube-world of videos.' },
-        { title: 'IPFUNDO DESIGN', url: 'https://sites.google.com/view/ipfundo-design/home', description: 'Explore extra fashion and design.' },
-        { title: 'Facebook', url: 'https://www.facebook.com/', description: 'Connect with friends and the world around you on Facebook.' },
-        { title: 'Instagram', url: 'https://www.instagram.com/', description: 'A simple, fun & creative way to capture, edit & share photos, videos & messages.' },
-        { title: 'X-Twitter', url: 'https://www.twitter.com/', description: 'Join the conversation on Twitter and stay updated on current events.' },
-        { title: 'LinkedIn', url: 'https://www.linkedin.com/', description: 'The world’s largest professional network for career opportunities.' },
-        { title: 'Snapchat', url: 'https://www.snapchat.com/', description: 'Share moments and stay connected with friends on Snapchat.' },
-        { title: 'TikTok', url: 'https://www.tiktok.com/', description: 'Discover and share trending short videos on TikTok.' },
-        { title: 'Pinterest', url: 'https://www.pinterest.com/', description: 'Discover and save ideas for projects, recipes, and more on Pinterest.' },
-        { title: 'Reddit', url: 'https://www.reddit.com/', description: 'Dive into communities discussing virtually any topic on Reddit.' },
-        { title: 'YouTube', url: 'https://www.youtube.com/', description: 'Watch, upload, and share videos with the world on YouTube.' },
-        { title: 'WhatsApp', url: 'https://www.whatsapp.com/', description: 'Stay connected with friends and family through messaging and calls on WhatsApp.' },
-        { title: 'LEANTO-francais', url: 'https://inzozimedia.github.io/LAENTO/', description: 'learn basic french in a simple way and effective.' },
-        { title: 'FESTUS-online store', url: 'https://sites.google.com/view/basketballequipmentonlineshop/shoes', description: 'Online shopping.' },
-        { title: 'IPIANO BEAT HUB', url: 'https://sites.google.com/view/ipiano-beat-hub/trends', description: 'Listen amapiano songs' },
-        { title: 'MOVIE BASE', url: 'https://inzozimedia.github.io/movie-base/', description: 'Watch all new movies and even your favorites.' },
-        { title: 'PUBLISH', url: 'https://inzozimedia.github.io/IMW-PUBLISH/', description: 'Deploy your own site on Inzozi Med Web-blocks, earn, and manage user interactions.' }       
-    ];
-
-    async function fetchWeather() {
-        try {
-            const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-2&longitude=30&hourly=temperature_2m');
-            const data = await response.json();
-            const temperature = data.hourly.temperature_2m[0]; // Get the first hourly temperature
-            document.getElementById('temperature').innerText = `Temperature: ${temperature} °C`;
-            document.getElementById('weather-description').innerText = `Weather data retrieved successfully!`;
-            document.getElementById('weather-box').style.display = 'block'; // Show the weather box
-        } catch (error) {
-            console.error('Error fetching weather data:', error);
-            document.getElementById('weather-box').style.display = 'none'; // Hide weather box on error
-        }
-    }
-
-    async function fetchWordDefinition(query) {
-        const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${query}`);
-        if (!response.ok) {
-            throw new Error('Word not found');
-        }
-        return response.json();
-    }
-
-    document.getElementById('search-button').addEventListener('click', async function () {
-        const query = document.getElementById('search-input').value.toLowerCase();
-        const searchResults = document.getElementById('search-results');
-        const errorMessage = document.getElementById('error-message');
-        
-        searchResults.innerHTML = '';
-        errorMessage.style.display = 'none';
-
-        // Show loading bar
-        const loadingBar = document.getElementById('loading-bar');
-        loadingBar.style.width = '50%';
-
-        // Remove weather data when search button is clicked
-        document.getElementById('weather-box').style.display = 'none';
-
-        if (!query) {
-            return;
-        }
-
-        // Filter and display results from dummy data
-        const filteredResults = data.filter(item =>
-            item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query)
-        );
-
-        if (filteredResults.length > 0) {
-            filteredResults.forEach(item => {
-                const resultDiv = document.createElement('div');
-                resultDiv.className = 'result';
-                resultDiv.innerHTML = `<a href="${item.url}" target="_blank">${item.title}</a><p>${item.description}</p>`;
-                searchResults.appendChild(resultDiv);
-            });
-        }
-
-        // Fetch and display word definition from Dictionary API
-        try {
-            const wordDefinition = await fetchWordDefinition(query);
-            wordDefinition.forEach(def => {
-                const resultDiv = document.createElement('div');
-                resultDiv.className = 'result';
-                resultDiv.innerHTML = `<p><strong>${def.word}:</strong> ${def.meanings[0].definitions[0].definition}</p>`;
-                searchResults.appendChild(resultDiv);
-            });
-        } catch (error) {
-            // Show error message only if no dummy data and no word definition found
-            if (filteredResults.length === 0) {
-                errorMessage.style.display = 'block';
-            }
-        }
-
-        // Finish loading bar
-        loadingBar.style.width = '100%';
-
-        // Hide loading bar after a short delay
-        setTimeout(() => {
-            loadingBar.style.width = '0%';
-        }, 500);
     });
 
-    // Fetch the weather data on page load
-    window.onload = fetchWeather;
-    function adjustLayout() {
-        const screenWidth = window.innerWidth;
-
-        // Adjust the search bar and containers for smaller screens
-        const searchBar = document.querySelector('.search-bar');
-        const searchResults = document.querySelector('.search-results');
-        const weatherBox = document.querySelector('.weather-box');
-        const errorImage = document.querySelector('.error img');
-
-        if (screenWidth < 600) {
-            // Smaller screen adjustments
-            searchBar.style.width = '90%';
-            searchResults.style.width = '90%';
-            weatherBox.style.width = '90%';
-            if (errorImage) {
-                errorImage.style.width = '100%';
-            }
+    // Handle checkbox click
+    document.getElementById('dontShowAgain').addEventListener('change', function() {
+        if (this.checked) {
+            localStorage.setItem('dontShowAgain', 'true');
         } else {
-            // Larger screen adjustments
-            searchBar.style.width = '600px';
-            searchResults.style.width = '600px';
-            weatherBox.style.width = '600px';
-            if (errorImage) {
-                errorImage.style.width = '400px';
-            }
+            localStorage.removeItem('dontShowAgain');
         }
+    });
+
+    // Check local storage on page load
+    window.addEventListener('load', function() {
+        if (localStorage.getItem('dontShowAgain') === 'true') {
+            window.location.href = 'home.html';
+        }
+    });
+
+    // Handle AM HUMAN button click
+    document.getElementById('amHumanBtn').addEventListener('click', function() {
+        document.getElementById('humanModal').style.display = 'block';
+    });
+
+    // Handle PLAY button click
+    document.getElementById('playBtn').addEventListener('click', function() {
+        document.getElementById('humanAudio').play();
+    });
+
+    // Handle input validation
+    document.getElementById('humanInput').addEventListener('input', function() {
+        const input = this.value.toUpperCase();
+        if (input === 'DREAMS') {
+            this.classList.remove('error');
+            document.getElementById('continueBtn').disabled = false;
+        } else {
+            this.classList.add('error');
+            document.getElementById('continueBtn').disabled = true;
+        }
+    });
+
+    // Handle CONTINUE button click
+    document.getElementById('continueBtn').addEventListener('click', function() {
+        window.location.href = 'home.html';
+    });
+
+    // Close modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('humanModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Scroll to top function
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    // Run adjustLayout initially and on window resize
-    adjustLayout();
-    window.addEventListener('resize', adjustLayout);
-
 </script>
 
 </body>

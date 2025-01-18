@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INZOZI MED Assets</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #dfe6e9; /* Luminous sky-gray background */
+            color: black; /* Text color set to black */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            transition: background-color 0.5s ease;
+        }
+
+        /* Search Container */
+        .search-container {
+            display: flex;
+            align-items: center;
+            width: 90%;
+            max-width: 600px;
+            padding: 10px;
+            background-color: #f0f4f8; /* Light luminous sky-gray background */
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        /* Search Input */
+        .search-container input {
+            flex: 1;
+            padding: 10px 20px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            border-radius: 50px;
+            background-color: #e9edf2; /* Subtle luminous input background */
+            color: black; /* Text color set to black */
+        }
+
+        /* Search Button */
+        .search-container button {
+            background-color: #373a3c; /* Sky-gray accent */
+            color: rgb(185, 184, 184); /* Text color set to black */
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background-color: #3d6077; /* Slightly darker accent */
+            transform: scale(1.05);
+        }
+
+        /* App Store Section */
+        .app-store {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .app-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f0f4f8;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            background-color: #e9edf2;
+        }
+
+        .app-card img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+
+        .app-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .app-name {
+            font-size: 1.2rem;
+            color: black; /* Text color set to black */
+        }
+
+        .install-button {
+            background-color: #373a3c; /* Sky-gray accent */
+            color: white; /* Text color set to white */
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .install-button:hover {
+            background-color: #3d6077; /* Slightly darker accent */
+            transform: scale(1.05);
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            .app-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .app-info {
+                margin-bottom: 10px;
+            }
+
+            .install-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for apps..." required>
+        <button id="searchButton">Search</button>
+    </div>
+    <div class="app-store" id="appStore">
+        <!-- Rufus App Card -->
+        <div class="app-card">
+            <div class="app-info">
+                <img src="https://via.placeholder.com/50" alt="App Icon">
+                <div class="app-name">Rufus</div>
+            </div>
+            <a href="https://github.com/inzozimedia/INZOZI-MED-WEB/raw/refs/heads/main/Assets/rufus-4.6.exe" class="install-button">Install</a>
+        </div>
+        <!-- Sample Additional App Cards -->
+        <div class="app-card">
+            <div class="app-info">
+            <img src="image link" alt="App Icon">
+            <div class="app-name">Not available</div>
+            </div> <a href="view raw link" class="install-button">Install</a>
+        </div>
+       
+        <!-- Add more app cards as needed -->
+    </div>
+    <script>
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const appCards = document.querySelectorAll('.app-card');
+            appCards.forEach(card => {
+                const appName = card.querySelector('.app-name').textContent.toLowerCase();
+                if (appName.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

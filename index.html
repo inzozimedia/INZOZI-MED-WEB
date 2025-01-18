@@ -51,6 +51,21 @@ body {
     transition: width 0.3s ease;
 }
 
+.corner-image {
+    position: fixed;
+    bottom: 540px; /* Adjust distance from the bottom */
+    right: 20px; /* Adjust distance from the right */
+    width: 50px; /* Set desired width */
+    height: auto; /* Maintain aspect ratio */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.corner-image:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+
 /* Logo/Title Styling */
 .logo {
     font-size: 2.5rem;
@@ -355,6 +370,9 @@ footer a:hover {
     </head>
         <body>
             <div id="loadingLine"></div>
+            <a href="assets.html" target="_blank">
+                <img src="https://i.ibb.co/vmKKqGt/sample-image.png" alt="Right Corner Image" class="corner-image">
+            </a>            
             <div class="logo" id="mainLogo">INZOZI MED WEB</div>
             <div class="search-container" id="searchContainer">
                 <input type="text" id="searchTitle" placeholder="Search..." required>

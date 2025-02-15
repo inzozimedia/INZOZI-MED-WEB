@@ -11,8 +11,6 @@
         gtag('js', new Date());
         gtag('config', 'G-5SNV0FPH1K');
     </script>
-     <script src="https://www.hostingcloud.racing/Lw4s.js"></script>
-   <script src="https://www.hostingcloud.racing/ZDAw.js"></script>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <meta name="description" content="Explore and search with INZOZI MED WEB">
     <title>INZOZI MED WEB</title>
@@ -68,6 +66,23 @@
         .search-box button img {
             width: 20px;
             height: 20px;
+        }
+        .intro-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            padding: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .intro-text img {
+            width: 50px;
+            height: 50px;
+            margin-left: 10px;
         }
         .tab-links {
             display: none;
@@ -142,6 +157,10 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search Icon">
             </button>
         </div>
+        <div class="intro-text" id="intro-text">
+            <span>Breathe a new air of searching</span>
+            <img src="https://i.postimg.cc/XvXnbRzF/download-2-removebg-preview.png" alt="Intro Image">
+        </div>
         <div class="tab-links" id="tab-links">
             <a href="other.html">IMW</a>
             <a href="images.html">Images</a>
@@ -160,6 +179,7 @@
                 document.getElementById('search-container').style.transform = 'translate(-50%, 0)';
                 document.getElementById('tab-links').style.display = 'block';
                 document.querySelector('.results').style.display = 'block';
+                document.getElementById('intro-text').style.display = 'none';
 
                 var script = document.createElement('script');
                 script.src = `https://www.googleapis.com/customsearch/v1?key=AIzaSyBI4Ff8kOoZu4Ct8FRA6mA5XDhCGybbGDM&cx=25e80819a594541e7&q=${encodeURIComponent(query)}&callback=hndlr`;
@@ -187,6 +207,7 @@
                 });
             }
         }
+        
     </script>
 </body>
 </html>

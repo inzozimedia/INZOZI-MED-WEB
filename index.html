@@ -1,6 +1,7 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5SNV0FPH1K"></script>
@@ -16,677 +17,175 @@
     <meta name="description" content="Explore and search with INZOZI MED WEB">
     <title>INZOZI MED WEB</title>
     <style>
-        /* General Body Styling */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #dfe6e9; /* Luminous sky-gray background */
-    color: black; /* Text color set to black */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    transition: background-color 0.5s ease;
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f2ef;
+            color: #333;
+            text-align: center;
+        }
+        .search-container {
+            margin-top: 50px;
+            width: 80%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .search-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #ccc;
+            border-radius: 30px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        .search-box img.logo {
+            width: 30px;
+            height: 30px;
+            margin: 0 10px;
+        }
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            outline: none;
+        }
+        .search-box button {
+            background-color: #0047bb;
+            border: none;
+            color: #fff;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-box button img {
+            width: 20px;
+            height: 20px;
+        }
+        .tab-links {
+            display: none;
+            margin-top: 20px;
+        }
+        .tab-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #0047bb;
+            font-size: 16px;
+        }
+        .tab-links a:hover {
+            text-decoration: underline;
+        }
+        .results {
+            margin-top: 180px;
+            text-align: left;
+            display: none;
+            width: 80%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .result-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .result-item img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .result-item-content {
+            margin-left: 10px;
+        }
+        .result-item h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #1a0dab;
+            display: flex;
+            align-items: center;
+        }
+        .result-item h3 a {
+            color: #1a0dab;
+            text-decoration: none;
+        }
+        .result-item h3 a:hover {
+            text-decoration: underline;
+        }
+        .result-item p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #4d5156;
+        }
+        .result-item a {
+            color: #006621;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .result-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container" id="search-container">
+        <div class="search-box">
+            <img src="https://i.ibb.co/Jg2FJcg/logo.png" alt="INZOZI MED WEB Logo" class="logo">
+            <input type="text" id="search-input" placeholder="Search..." onkeydown="if (event.key === 'Enter') performSearch()">
+            <button onclick="performSearch()">
+                <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search Icon">
+            </button>
+        </div>
+        <div class="tab-links" id="tab-links">
+            <a href="other.html">Other</a>
+            <a href="images.html">Images</a>
+            <a href="videos.html">Videos</a>
+        </div>
+    </div>
+    <div id="content" class="results"></div>
 
-/* Loading Line */
-#loadingLine {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 4px;
-    background-color: #00aaff; /* Sky-gray accent */
-    z-index: 1000;
-    transition: width 0.3s ease;
-}
+    <script>
+        function performSearch() {
+            var query = document.getElementById('search-input').value;
+            if (query.trim()) {
+                document.getElementById('search-container').style.position = 'fixed';
+                document.getElementById('search-container').style.top = '0';
+                document.getElementById('search-container').style.left = '50%';
+                document.getElementById('search-container').style.transform = 'translate(-50%, 0)';
+                document.getElementById('tab-links').style.display = 'block';
+                document.querySelector('.results').style.display = 'block';
 
-.corner-image {
-    position: fixed;
-    bottom: 540px; /* Adjust distance from the bottom */
-    right: 20px; /* Adjust distance from the right */
-    width: 50px; /* Set desired width */
-    height: auto; /* Maintain aspect ratio */
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.corner-image:hover {
-    transform: scale(1.1); /* Slight zoom effect on hover */
-}
-
-
-/* Logo/Title Styling */
-.logo {
-    font-size: 2.5rem;
-    color: black; /* Text color set to black */
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-    transition: opacity 0.3s ease, transform 0.5s ease;
-}
-
-.logo.hidden {
-    opacity: 0;
-    transform: translateY(-20px);
-}
-
-/* Search Container */
-.search-container {
-    display: flex;
-    align-items: center;
-    width: 90%;
-    max-width: 600px;
-    padding: 10px;
-    background-color: #f0f4f8; /* Light luminous sky-gray background */
-    border-radius: 50px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-
-.search-container.moved {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 600px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-/* Search Input */
-.search-container input {
-    flex: 1;
-    padding: 10px 20px;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    border-radius: 50px;
-    position: relative;
-    background-color: #e9edf2; /* Subtle luminous input background */
-    color: black; /* Text color set to black */
-    transition: background-color 0.3s ease;
-}
-
-.search-container input:focus {
-    background-color: #d3dce4; /* Slightly darker luminous gray */
-}
-
-/* Search Button */
-.search-container button {
-    background-color: #373a3c; /* Sky-gray accent */
-    color: rgb(185, 184, 184); /* Text color set to black */
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 50px;
-    cursor: pointer;
-    margin-left: 10px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.search-container button:hover {
-    background-color: #3d6077; /* Slightly darker accent */
-    transform: scale(1.05);
-}
-
-/* Spacer */
-.spacer {
-    height: 5px; /* Reduced spacer */
-}
-
-/* Categories Navigation */
-.categories {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.categories a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: black;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-}
-
-.categories a:hover {
-    color: #be115f; /* Darker gray for hover */
-}
-
-/* Results Section */
-#searchResults {
-    margin-top: 10px; /* Ensure space between search bar and results */
-    width: 90%;
-    max-width: 600px;
-    text-align: left;
-    font-size: 1rem;
-    color: rgb(0, 0, 0); /* Text color set to black */
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-#searchResults.visible {
-    display: block;
-    opacity: 1;
-}
-
-.result {
-    margin-bottom: 20px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.result:hover {
-    transform: translateY(-5px);
-}
-
-.result a {
-    color: rgb(0, 0, 0); /* Text color set to black */
-    font-size: 1.2rem;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.result a:hover {
-    color: #be115f; /* Darker gray for hover */
-}
-
-.result p {
-    margin: 5px 0 0;
-    color: rgb(73, 73, 73); /* Text color set to black */
-}
-
-/* 404 Not Found Styling */
-.not-found {
-    text-align: center;
-    color: black; /* Text color set to black */
-    font-size: 2rem;
-    margin-top: 20px;
-}
-
-.not-found img {
-    border-radius: 50%;
-    margin-top: 10px;
-}
-
-/* Added Styling to Center Content Before Search */
-.content-placeholder {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 1.2rem;
-    color: black; /* Text color set to black */
-    font-style: italic;
-}
-
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 800px;
-    height: 600px;
-    background-color: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-.modal iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.modal .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    cursor: pointer;
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
-
-/* Footer Styling */
-footer {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 1rem;
-    color: black;
-}
-
-footer a {
-    color: black;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .logo {
-        font-size: 2rem;
-    }
-
-    .search-container input {
-        font-size: 0.9rem;
-    }
-
-    .search-container button {
-        font-size: 0.9rem;
-        padding: 8px 16px;
-    }
-
-    .result a {
-        font-size: 1rem;
-    }
-
-    .not-found {
-        font-size: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo {
-        font-size: 1.5rem;
-    }
-
-    .search-container input {
-        font-size: 0.8rem;
-    }
-
-    .search-container button {
-        font-size: 0.8rem;
-        padding: 6px 12px;
-    }
-
-    .result a {
-        font-size: 0.9rem;
-    }
-
-    .not-found {
-        font-size: 1.2rem;
-    }
-}
-
-/* Image Grid Styling */
-.image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-
-.image-grid img {
-    width: 100%;
-    height: auto;
-}
-
-/* Video List Styling */
-.video-list {
-    display: flex;
-    flex-direction: row;
-    overflow-x: scroll;
-    gap: 10px;
-}
-
-.video-list iframe {
-    flex: 0 0 auto;
-    width: 100%;
-    height: 315px;
-}
-        </style>
-    </head>
-        <body>
-            <div id="loadingLine"></div>
-            <a href="assets.html" target="_blank">
-                <img src="https://i.ibb.co/vmKKqGt/sample-image.png" alt="Right Corner Image" class="corner-image">
-            </a>            
-            <div class="logo" id="mainLogo">INZOZI MED WEB</div>
-            <div class="search-container" id="searchContainer">
-                <input type="text" id="searchTitle" placeholder="Search..." required>
-                <button id="searchButton">Search</button>
-            </div>
-            
-            <div class="categories">
-                <a href="#" id="allCategory">All</a>
-                <a href="#" id="imagesCategory">Images</a>
-                <a href="#" id="videosCategory">Videos</a>
-            </div>
-        
-            <div class="spacer"></div>
-            <div id="searchResults"></div>
-        
-            <!-- Modal -->
-            <div class="overlay" id="overlay" onclick="closeModal()"></div>
-            <div class="modal" id="modal">
-                <button class="close" onclick="closeModal()">×</button>
-                <iframe id="modalIframe" src=""></iframe>
-            </div>
-        
-            <footer>
-                &copy; 2025 Made by <a href="btem.html" target="_blank">btem</a>
-            </footer>
-            <script>
-                // Function to open the modal with the Wikipedia page
-function openModal(url) {
-    const modal = document.getElementById("modal");
-    const overlay = document.getElementById("overlay");
-    const iframe = document.getElementById("modalIframe");
-
-    iframe.src = url;
-    modal.style.display = "block";
-    overlay.style.display = "block";
-}
-// Function to close the modal
-function closeModal() {
-    const modal = document.getElementById("modal");
-    const overlay = document.getElementById("overlay");
-    const iframe = document.getElementById("modalIframe");
-
-    iframe.src = "";
-    modal.style.display = "none";
-    overlay.style.display = "none";
-}
-</script>
-        <script type="module">
-            // Import Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
-
-// Firebase Configuration
-const firebaseConfig = {
-     apiKey: "AIzaSyBbhxmAkHJtq3Zs17P4ewHsc8wi8-0M_XI",
-  authDomain: "developers-imw.firebaseapp.com",
-  projectId: "developers-imw",
-  storageBucket: "developers-imw.firebasestorage.app",
-  messagingSenderId: "182400720989",
-  appId: "1:182400720989:web:dfa30c57dcd2c8c2c96db4",
-  measurementId: "G-1VFTEWDBPG"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const searchContainer = document.getElementById("searchContainer");
-const mainLogo = document.getElementById("mainLogo");
-const searchResults = document.getElementById("searchResults");
-const searchInput = document.getElementById("searchTitle");
-const loadingLine = document.getElementById("loadingLine");
-
-// Handle Enter Key
-document.getElementById("searchTitle").addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        document.getElementById("searchButton").click();
-    }
-});
-
-// Handle Search Button Click
-document.getElementById("searchButton").addEventListener("click", async function () {
-    const searchTitle = searchInput.value.trim().toLowerCase();
-
-    // If search input is empty, do not execute the search
-    if (!searchTitle) {
-        alert("Please enter a search query.");
-        return;
-    }
-
-    searchResults.innerHTML = '';
-    searchResults.style.textAlign = "left";
-
-    if (!searchContainer.classList.contains("moved")) {
-        searchContainer.classList.add("moved");
-        mainLogo.classList.add("hidden");
-    }
-
-    // Show loading line
-    loadingLine.style.width = "100%";
-
-    try {
-        const [dictionaryResults, firestoreResults, wikipediaResults] = await Promise.all([
-            getDictionaryResults(searchTitle),
-            getFirestoreResults(searchTitle),
-            searchWikipedia(searchTitle)
-        ]);
-
-        const combinedResults = [...dictionaryResults, ...shuffleArray([...firestoreResults, ...wikipediaResults])];
-
-        if (combinedResults.length === 0) {
-            searchResults.innerHTML = `
-                <div class="not-found">
-                    <br>404 NOT FOUND</br>
-                    <img src="https://ibb.co/y4fJy2y">
-                </div>`;
-        } else {
-            searchResults.innerHTML = combinedResults.join("");
+                var script = document.createElement('script');
+                script.src = `https://www.googleapis.com/customsearch/v1?key=AIzaSyBI4Ff8kOoZu4Ct8FRA6mA5XDhCGybbGDM&cx=25e80819a594541e7&q=${encodeURIComponent(query)}&callback=hndlr`;
+                document.body.appendChild(script);
+            }
         }
 
-        searchResults.classList.add("visible");
-    } catch (error) {
-        console.error("Error retrieving documents: ", error);
-        alert("An error occurred while retrieving data.");
-    } finally {
-        // Hide loading line
-        loadingLine.style.width = "0";
-    }
-});
-
-// Function to fetch dictionary results
-async function getDictionaryResults(word) {
-    const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
-    const results = [];
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data && data.length > 0) {
-            const meaning = data[0].meanings[0].definitions[0].definition;
-            const example = data[0].meanings[0].definitions[0].example || "No example available.";
-            const synonym = data[0].meanings[0].synonyms[0] || "No synonym available.";
-
-            results.push(`
-                <div class="result">
-                    <h3>Dictionary Result</h3>
-                    <p><strong>Meaning:</strong> ${meaning}</p>
-                    <p><strong>Example:</strong> ${example}</p>
-                    <p><strong>Synonym:</strong> ${synonym}</p>
-                </div>`);
-        }
-    } catch (error) {
-        console.error("Error fetching dictionary data:", error);
-    }
-
-    return results;
-}
-
-// Function to fetch Firestore results
-async function getFirestoreResults(searchTitle) {
-    const querySnapshot = await getDocs(collection(db, "submissions"));
-    const results = [];
-
-    querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        if (data.title.toLowerCase().includes(searchTitle)) {
-            results.push(`
-                <div class="result">
-                    <a href="${data.link}" target="_blank">${data.title}</a>
-                    <p>${data.description}</p>
-                </div>`);
-        }
-    });
-
-    return results;
-}
-
-// Function to fetch Wikipedia results
-async function searchWikipedia(query) {
-    const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&srlimit=2&format=json&origin=*&prop=pageimages|info&inprop=url&pithumbsize=200`;
-    const results = [];
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const searchResults = data.query.search;
-
-        searchResults.forEach(result => {
-            const title = encodeURIComponent(result.title);
-            const pageUrl = `https://en.wikipedia.org/wiki/${title}`;
-            const snippet = result.snippet.replace(/<\/?[^>]+(>|$)/g, ""); // Remove HTML tags from snippet
-            results.push(`
-                <div class="result">
-                    <h3>
-                        <a href="javascript:void(0)" onclick="openModal('${pageUrl}')">${result.title}</a>
-                    </h3>
-                    <p>${snippet}...</p>
-                </div>`);
-        });
-    } catch (error) {
-        console.error("Error fetching Wikipedia data:", error);
-    }
-
-    return results;
-}
-
-// Function to shuffle array
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-// Function to fetch images from MediaWiki API
-async function searchImages(query) {
-    const url = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(query)}&prop=images&format=json&origin=*`;
-    const results = [];
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const pages = data.query.pages;
-
-        Object.values(pages).forEach(page => {
-            if (page.images) {
-                page.images.slice(0, 12).forEach(image => {
-                    const imageUrl = `https://commons.wikimedia.org/wiki/Special:FilePath/${image.title}`;
-                    results.push(`<img src="${imageUrl}" alt="${image.title}" style="width: 100%; height: auto;">`);
+        function hndlr(response) {
+            var content = document.getElementById("content");
+            content.innerHTML = '';
+            if (!response.items) {
+                content.innerHTML = `<h3>No Results Found</h3>`;
+            } else {
+                response.items.forEach(item => {
+                    var div = document.createElement('div');
+                    div.className = 'result-item';
+                    var favicon = document.createElement('img');
+                    favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(item.link).hostname}`;
+                    var contentDiv = document.createElement('div');
+                    contentDiv.className = 'result-item-content';
+                    contentDiv.innerHTML = `<h3><a href="${item.link}" target="_blank">${item.title}</a></h3><p>${item.snippet}</p><a href="${item.link}" target="_blank">${item.link}</a>`;
+                    div.appendChild(favicon);
+                    div.appendChild(contentDiv);
+                    content.appendChild(div);
                 });
             }
-        });
-    } catch (error) {
-        console.error("Error fetching image data:", error);
-    }
-
-    return results;
-}
-
-// Function to fetch videos from YouTube API
-async function searchVideos(query) {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=8&key=AIzaSyBI4Ff8kOoZu4Ct8FRA6mA5XDhCGybbGDM`;
-    const results = [];
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const videos = data.items;
-
-        videos.forEach(video => {
-            const videoUrl = `https://www.youtube.com/embed/${video.id.videoId}`;
-            results.push(`<iframe src="${videoUrl}" allowfullscreen style="width: 100%; height: 315px;"></iframe>`);
-        });
-    } catch (error) {
-        console.error("Error fetching video data:", error);
-    }
-
-    return results;
-}
-
-// Handle category click
-document.querySelectorAll('.categories a').forEach(category => {
-    category.addEventListener('click', async function (event) {
-        event.preventDefault();
-        const categoryType = this.textContent.toLowerCase();
-        const searchTitle = searchInput.value.trim().toLowerCase();
-
-        if (!searchTitle) {
-            alert("Please enter a search query.");
-            return;
         }
-
-        searchResults.innerHTML = '';
-        searchResults.style.textAlign = "left";
-
-        if (!searchContainer.classList.contains("moved")) {
-            searchContainer.classList.add("moved");
-            mainLogo.classList.add("hidden");
-        }
-
-        // Show loading line
-        loadingLine.style.width = "100%";
-
-        try {
-            let results = [];
-            if (categoryType === 'images') {
-                results = await searchImages(searchTitle);
-                searchResults.innerHTML = `<div class="image-grid">${results.join("")}</div>`;
-            } else if (categoryType === 'videos') {
-                results = await searchVideos(searchTitle);
-                searchResults.innerHTML = `<div class="video-list">${results.join("")}</div>`;
-            } else {
-                const [dictionaryResults, firestoreResults, wikipediaResults] = await Promise.all([
-                    getDictionaryResults(searchTitle),
-                    getFirestoreResults(searchTitle),
-                    searchWikipedia(searchTitle)
-                ]);
-                results = [...dictionaryResults, ...shuffleArray([...firestoreResults, ...wikipediaResults])];
-                searchResults.innerHTML = results.join("");
-            }
-
-            if (results.length === 0) {
-                searchResults.innerHTML = `
-                    <div class="not-found">
-                        <br>404 NOT FOUND</br>
-                        <img src="https://ibb.co/y4fJy2y">
-                    </div>`;
-            }
-
-            searchResults.classList.add("visible");
-        } catch (error) {
-            console.error("Error retrieving documents: ", error);
-            alert("An error occurred while retrieving data.");
-        } finally {
-            // Hide loading line
-            loadingLine.style.width = "0";
-        }
-    });
-});
-     </script>
-     </body>
-    </html>
+    </script>
+</body>
+</html>

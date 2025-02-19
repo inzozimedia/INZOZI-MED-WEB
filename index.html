@@ -12,17 +12,27 @@
         gtag('config', 'G-5SNV0FPH1K');
     </script>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <meta name="description" content="Explore and search with INZOZI MED WEB">
-    <title>INZOZI MED WEB</title>
-    <script type="text/javascript">(function(){d=document;s=d.createElement("script");s.src="https://widget.supportai.com/d4f93346ea7cfa4.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <title>INZOZI MED WEB - THE SEARCH ENGINE FOR ALL!</title>
+    <meta name="description" content="Explore and search with INZOZI MED WEB and access the RED WEB where you can upload your sites easily.">
+    <script type="text/javascript">
+        (function(){
+            d=document;
+            s=d.createElement("script");
+            s.src="https://widget.supportai.com/d4f93346ea7cfa4.js";
+            s.async=1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Comfortaa', cursive;
             margin: 0;
             padding: 0;
             background-color: #f3f2ef;
             color: #333;
             text-align: center;
+            font-size: 18px;
         }
         .search-container {
             margin-top: 50px;
@@ -49,16 +59,16 @@
             flex: 1;
             border: none;
             padding: 15px;
-            font-size: 18px;
+            font-size: 20px;
             outline: none;
         }
         .search-box button {
             background-color:rgba(0, 72, 187, 0);
             border: none;
-            color: #fff;
+            color: #333;
             padding: 15px 20px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -78,6 +88,7 @@
             max-width: 80%;
             margin-left: auto;
             margin-right: auto;
+            font-size: 20px;
         }
         .intro-text img {
             width: 50px;
@@ -92,7 +103,8 @@
             margin: 0 10px;
             text-decoration: none;
             color: #0047bb;
-            font-size: 16px;
+            font-size: 18px;
+            cursor: pointer;
         }
         .tab-links a:hover {
             text-decoration: underline;
@@ -100,11 +112,19 @@
         .results {
             margin-top: 180px;
             text-align: left;
-            display: none;
+            display: flex;
+            justify-content: space-between;
             width: 80%;
-            max-width: 800px;
+            max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
+        }
+        .results .text-results {
+            width: 65%;
+        }
+        .results .image-results {
+            width: 30%;
+            text-align: center;
         }
         .result-item {
             display: flex;
@@ -121,7 +141,7 @@
         }
         .result-item h3 {
             margin: 0;
-            font-size: 18px;
+            font-size: 22px;
             color: #1a0dab;
             display: flex;
             align-items: center;
@@ -135,20 +155,97 @@
         }
         .result-item p {
             margin: 5px 0;
-            font-size: 14px;
+            font-size: 18px;
             color: #4d5156;
         }
         .result-item a {
             color: #006621;
-            font-size: 14px;
+            font-size: 18px;
             text-decoration: none;
         }
         .result-item a:hover {
             text-decoration: underline;
         }
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .image-grid-item {
+            flex: 1 1 calc(33.333% - 20px);
+            box-sizing: border-box;
+        }
+        .image-grid-item img {
+            width: 100%;
+            height: auto;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .loading-bar {
+            width: 100%;
+            height: 4px;
+            background: #0047bb;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            display: none;
+        }
+        .footer {
+            background-color: #f3f2ef;
+            padding: 20px;
+            border-top: 1px solid gray;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .footer .profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .footer .profile a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .footer .profile a:hover {
+            text-decoration: underline;
+        }
+        .footer .copyright {
+            flex: 1;
+            text-align: center;
+            font-size: 16px;
+        }
+        .footer .slideshow {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer .slideshow img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            animation: slide 6s infinite;
+        }
+        @keyframes slide {
+            0% { top: 0; }
+            33% { top: -100%; }
+            66% { top: -200%; }
+            100% { top: 0; }
+        }
     </style>
 </head>
 <body>
+    <div class="loading-bar" id="loading-bar"></div>
     <div class="search-container" id="search-container">
         <div class="search-box">
             <img src="https://i.ibb.co/Jg2FJcg/logo.png" alt="INZOZI MED WEB Logo" class="logo">
@@ -162,36 +259,68 @@
             <img src="https://i.postimg.cc/XvXnbRzF/download-2-removebg-preview.png" alt="Intro Image">
         </div>
         <div class="tab-links" id="tab-links">
-            <a href="other.html">IMW</a>
-            <a href="images.html">Images</a>
-            <a href="videos.html">Videos</a>
+            <a id="search-tab" onclick="performSearch()">IMW</a>
+            <a id="red-web-tab" href="red-web.html">RED WEB</a>
         </div>
     </div>
-    <div id="content" class="results"></div>
+    <div id="content" class="results">
+        <div class="text-results"></div>
+        <div class="image-results">
+            <div class="image-grid" id="image-grid"></div>
+        </div>
+    </div>
+
+    <div class="footer" id="footer">
+        <div class="profile">
+            <img src="https://lh3.googleusercontent.com/a/ACg8ocJXRuTlPjPHruQQh0AQ8R8YfKpvLuN70O7aiVvCEEMh6hzKzNo=s360-c-no" alt="Profile Image">
+            <a href="btem.html">btem team</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 INZOZI MED WEB. All rights reserved.
+        </div>
+        <div class="slideshow">
+            <img src="https://i.pinimg.com/736x/3c/17/cc/3c17ccb25d186e2dfc74aa764d34d907.jpg" alt="Slide 1">
+            <img src="https://i.pinimg.com/736x/f9/a6/12/f9a6129b0d10fd385e85a8cc50e25e15.jpg" alt="Slide 2">
+            <img src="https://lh3.googleusercontent.com/a/ACg8ocJXRuTlPjPHruQQh0AQ8R8YfKpvLuN70O7aiVvCEEMh6hzKzNo=s360-c-no" alt="Slide 3">
+        </div>
+    </div>
 
     <script>
         function performSearch() {
             var query = document.getElementById('search-input').value;
             if (query.trim()) {
+                showLoadingBar();
                 document.getElementById('search-container').style.position = 'fixed';
                 document.getElementById('search-container').style.top = '0';
                 document.getElementById('search-container').style.left = '50%';
                 document.getElementById('search-container').style.transform = 'translate(-50%, 0)';
                 document.getElementById('tab-links').style.display = 'block';
-                document.querySelector('.results').style.display = 'block';
+                document.querySelector('.results').style.display = 'flex';
                 document.getElementById('intro-text').style.display = 'none';
 
                 var script = document.createElement('script');
                 script.src = `https://www.googleapis.com/customsearch/v1?key=AIzaSyBI4Ff8kOoZu4Ct8FRA6mA5XDhCGybbGDM&cx=25e80819a594541e7&q=${encodeURIComponent(query)}&callback=hndlr`;
                 document.body.appendChild(script);
+
+                performImageSearch(query); // Automatically perform image search
+            }
+        }
+
+        function performImageSearch(query) {
+            if (query.trim()) {
+                showLoadingBar();
+                var script = document.createElement('script');
+                script.src = `https://www.googleapis.com/customsearch/v1?key=AIzaSyBI4Ff8kOoZu4Ct8FRA6mA5XDhCGybbGDM&cx=25e80819a594541e7&searchType=image&q=${encodeURIComponent(query)}&callback=imageHndlr`;
+                document.body.appendChild(script);
             }
         }
 
         function hndlr(response) {
-            var content = document.getElementById("content");
+            hideLoadingBar();
+            var content = document.querySelector(".text-results");
             content.innerHTML = '';
             if (!response.items) {
-                content.innerHTML = `<h3>No Results Found</h3>`;
+                content.innerHTML = `<h3>No Results Found<br>server's are busy</h3>`;
             } else {
                 response.items.forEach(item => {
                     var div = document.createElement('div');
@@ -206,8 +335,41 @@
                     content.appendChild(div);
                 });
             }
+            document.getElementById('footer').style.display = 'flex';
         }
-        
+
+        function imageHndlr(response) {
+            hideLoadingBar();
+            var grid = document.getElementById('image-grid');
+            grid.innerHTML = '';
+            if (response.items && response.items.length > 0) {
+                response.items.forEach(item => {
+                    var div = document.createElement('div');
+                    div.className = 'image-grid-item';
+                    var img = document.createElement('img');
+                    img.src = item.link;
+                    img.alt = item.title;
+                    img.onclick = function() {
+                        window.open(item.image.contextLink, '_blank');
+                    };
+                    div.appendChild(img);
+                    grid.appendChild(div);
+                });
+            } else {
+                grid.innerHTML = `<h3>No Images Found<br>server's are busy</h3>`;
+            }
+            document.getElementById('footer').style.display = 'flex';
+        }
+
+        function showLoadingBar() {
+            var loadingBar = document.getElementById('loading-bar');
+            loadingBar.style.display = 'block';
+        }
+
+        function hideLoadingBar() {
+            var loadingBar = document.getElementById('loading-bar');
+            loadingBar.style.display = 'none';
+        }
     </script>
 </body>
 </html>

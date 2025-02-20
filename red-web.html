@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RED WEB - INZOZI MED WEB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #000000;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .header {
+            background-color: #f0f0f0;
+            color: #000000;
+            padding: 20px;
+            border-bottom: 1px solid #cccccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-right: 1px solid #cccccc;
+            height: 100vh;
+            overflow-y: auto;
+            position: fixed;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #000000;
+            text-decoration: none;
+            padding: 10px 0;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            margin-left: 220px;
+            flex: 1;
+            padding: 20px;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .website-item {
+            margin-bottom: 20px;
+        }
+
+        .website-item h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .website-item hr {
+            border: 0;
+            height: 1px;
+            background: #cccccc;
+            margin-top: 10px;
+        }
+
+        .footer {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-top: 1px solid #cccccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000000;
+        }
+
+        .footer .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer .profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .footer .profile a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .footer .profile a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .copyright {
+            flex: 1;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .footer .slideshow {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer .slideshow img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            animation: slide 6s infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                top: 0;
+            }
+
+            33% {
+                top: -100%;
+            }
+
+            66% {
+                top: -200%;
+            }
+
+            100% {
+                top: 0;
+            }
+        }
+
+        .dark-theme {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .dark-theme .header,
+        .dark-theme .footer,
+        .dark-theme .sidebar {
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+        }
+
+        .dark-theme .sidebar a {
+            color: #e0e0e0;
+        }
+
+        .dark-theme .footer .profile a {
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>RED WEB</h1>
+        <img src="https://cdn-icons-png.flaticon.com/512/61/61456.png" alt="Toggle Theme" class="theme-toggle" onclick="toggleTheme()" width="30" height="30">
+    </div>
+    <div class="container">
+        <div class="sidebar" id="websites-list">
+            <!-- Websites will be loaded here -->
+        </div>
+        <div class="content">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search websites...">
+            </div>
+            <div id="websites-content">
+                <!-- Website search results will be displayed here -->
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="profile">
+            <img src="https://lh3.googleusercontent.com/a/ACg8ocJXRuTlPjPHruQQh0AQ8R8YfKpvLuN70O7aiVvCEEMh6hzKzNo=s360-c-no" alt="Profile Image">
+            <a href="btem.html">btem team</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 INZOZI MED WEB. All rights reserved.
+        </div>
+        <div class="slideshow">
+            <img src="https://i.pinimg.com/736x/3c/17/cc/3c17ccb25d186e2dfc74aa764d34d907.jpg" alt="Slide 1">
+            <img src="https://i.pinimg.com/736x/f9/a6/12/f9a6129b0d10fd385e85a8cc50e25e15.jpg" alt="Slide 2">
+            <img src="https://lh3.googleusercontent.com/a/ACg8ocJXRuTlPjPHruQQh0AQ8R8YfKpvLuN70O7aiVvCEEMh6hzKzNo=s360-c-no" alt="Slide 3">
+        </div>
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBbhxmAkHJtq3Zs17P4ewHsc8wi8-0M_XI",
+            authDomain: "developers-imw.firebaseapp.com",
+            projectId: "developers-imw",
+            storageBucket: "developers-imw.firebasestorage.app",
+            messagingSenderId: "182400720989",
+            appId: "1:182400720989:web:dfa30c57dcd2c8c2c96db4",
+            measurementId: "G-1VFTEWDBPG"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function fetchWebsites(searchTerm = '') {
+            const websitesList = document.getElementById('websites-list');
+            const websitesContent = document.getElementById('websites-content');
+            websitesContent.innerHTML = '<p>Loading...</p>';
+
+            let q;
+            if (searchTerm.trim() === '') {
+                q = collection(db, "submissions");
+            } else {
+                const searchTermLower = searchTerm.toLowerCase();
+                q = query(collection(db, "submissions"), where("title", ">=", searchTermLower), where("title", "<=", searchTermLower + "\uf8ff"));
+            }
+
+            const querySnapshot = await getDocs(q);
+            websitesContent.innerHTML = '';
+            websitesList.innerHTML = '';
+
+            querySnapshot.forEach((doc) => {
+                const website = doc.data();
+                const a = document.createElement('a');
+                a.href = website.link;
+                a.target = '_blank';
+                a.textContent = website.title;
+                websitesList.appendChild(a);
+
+                const div = document.createElement('div');
+                div.className = 'website-item';
+                div.innerHTML = `<h2><a href="${website.link}" target="_blank">${website.title}</a></h2><hr>`;
+                websitesContent.appendChild(div);
+            });
+
+            if (websitesContent.innerHTML === '') {
+                websitesContent.innerHTML = '<p>No websites found.</p>';
+            }
+        }
+
+        document.getElementById('search-input').addEventListener('input', (event) => {
+            fetchWebsites(event.target.value);
+        });
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+        }
+
+        // Fetch all websites on page load
+        fetchWebsites();
+    </script>
+</body>
+
+</html>

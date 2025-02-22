@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,10 +12,8 @@
             padding: 0;
             background-color: #ffffff;
             color: #000000;
-            text-align: center;
             font-size: 18px;
         }
-
         .header {
             background-color: #f0f0f0;
             color: #000000;
@@ -26,20 +23,17 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .header h1 {
             margin: 0;
             font-size: 36px;
+            color: #e63946;
         }
-
         .theme-toggle {
             cursor: pointer;
         }
-
         .container {
             display: flex;
         }
-
         .sidebar {
             width: 200px;
             background-color: #f0f0f0;
@@ -49,7 +43,6 @@
             overflow-y: auto;
             position: fixed;
         }
-
         .sidebar a {
             display: block;
             color: #000000;
@@ -57,45 +50,70 @@
             padding: 10px 0;
             font-size: 18px;
         }
-
         .sidebar a:hover {
             text-decoration: underline;
+            color: #e63946;
         }
-
         .content {
             margin-left: 220px;
             flex: 1;
-            padding: 20px;
+            padding: 40px; /* Increased padding for better spacing */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Shift content to the right */
         }
-
-        .search-bar {
+        .search-container {
+            width: 60%; /* Narrower for better centering */
+            max-width: 600px;
+            position: relative;
             margin-bottom: 20px;
+            margin-left: auto; /* Push to the right */
+            margin-right: 0;
         }
-
-        .search-bar input {
-            width: 80%;
-            padding: 10px;
+        .search-bar {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
             font-size: 16px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            outline: none;
+            background: url('https://via.placeholder.com/20/FF0000/FFFFFF?text=R') no-repeat 10px center;
+            background-size: 20px;
         }
-
-        .website-item {
-            margin-bottom: 20px;
+        .search-bar:focus {
+            border-color: #e63946;
         }
-
-        .website-item h2 {
-            margin: 0;
-            font-size: 24px;
+        .results {
+            width: 60%;
+            max-width: 600px;
+            text-align: left;
+            margin-left: auto; /* Align with search bar */
+            margin-right: 0;
         }
-
-        .website-item hr {
-            border: 0;
-            height: 1px;
-            background: #cccccc;
-            margin-top: 10px;
+        .result-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
         }
-
+        .result-item a {
+            color: #e63946;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .result-item a:hover {
+            text-decoration: underline;
+        }
+        .result-item .description {
+            color: #333;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .result-item .url {
+            color: #666;
+            font-size: 12px;
+            margin-top: 3px;
+        }
         .footer {
             background-color: #f0f0f0;
             padding: 20px;
@@ -104,90 +122,81 @@
             justify-content: space-between;
             align-items: center;
             color: #000000;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
-
         .footer .profile {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
         .footer .profile img {
             width: 50px;
             height: 50px;
             border-radius: 50%;
         }
-
         .footer .profile a {
             color: #000000;
             text-decoration: none;
             font-size: 18px;
         }
-
         .footer .profile a:hover {
             text-decoration: underline;
         }
-
         .footer .copyright {
             flex: 1;
             text-align: center;
             font-size: 16px;
         }
-
         .footer .slideshow {
             width: 100px;
             height: 100px;
             position: relative;
             overflow: hidden;
         }
-
         .footer .slideshow img {
             width: 100%;
             height: 100%;
             position: absolute;
             animation: slide 6s infinite;
         }
-
         @keyframes slide {
-            0% {
-                top: 0;
-            }
-
-            33% {
-                top: -100%;
-            }
-
-            66% {
-                top: -200%;
-            }
-
-            100% {
-                top: 0;
-            }
+            0% { top: 0; }
+            33% { top: -100%; }
+            66% { top: -200%; }
+            100% { top: 0; }
         }
-
         .dark-theme {
             background-color: #121212;
             color: #e0e0e0;
         }
-
         .dark-theme .header,
         .dark-theme .footer,
         .dark-theme .sidebar {
             background-color: #1c1c1c;
             color: #e0e0e0;
         }
-
-        .dark-theme .sidebar a {
-            color: #e0e0e0;
-        }
-
+        .dark-theme .sidebar a,
         .dark-theme .footer .profile a {
             color: #e0e0e0;
         }
+        .dark-theme .search-bar {
+            background-color: #2c2c2c;
+            border-color: #444;
+            color: #e0e0e0;
+        }
+        .dark-theme .result-item a {
+            color: #ff6666;
+        }
+        .dark-theme .result-item .description {
+            color: #cccccc;
+        }
+        .dark-theme .result-item .url {
+            color: #999999;
+        }
     </style>
 </head>
-
 <body>
     <div class="header">
         <h1>RED WEB</h1>
@@ -195,14 +204,14 @@
     </div>
     <div class="container">
         <div class="sidebar" id="websites-list">
-            <!-- Websites will be loaded here -->
+            <!-- Sidebar links will be loaded here -->
         </div>
         <div class="content">
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search websites...">
+            <div class="search-container">
+                <input type="text" class="search-bar" id="searchInput" placeholder="Search submissions..." onkeypress="if(event.key === 'Enter') searchSubmissions()">
             </div>
-            <div id="websites-content">
-                <!-- Website search results will be displayed here -->
+            <div class="results" id="searchResults">
+                <!-- Search results will be displayed here -->
             </div>
         </div>
     </div>
@@ -212,7 +221,7 @@
             <a href="btem.html">btem team</a>
         </div>
         <div class="copyright">
-            &copy; 2025 INZOZI MED WEB. All rights reserved.
+            © 2025 INZOZI MED WEB. All rights reserved.
         </div>
         <div class="slideshow">
             <img src="https://i.pinimg.com/736x/3c/17/cc/3c17ccb25d186e2dfc74aa764d34d907.jpg" alt="Slide 1">
@@ -222,11 +231,11 @@
     </div>
 
     <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-        import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+        // Import Firebase SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Your web app's Firebase configuration
+        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBbhxmAkHJtq3Zs17P4ewHsc8wi8-0M_XI",
             authDomain: "developers-imw.firebaseapp.com",
@@ -241,53 +250,91 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        async function fetchWebsites(searchTerm = '') {
-            const websitesList = document.getElementById('websites-list');
-            const websitesContent = document.getElementById('websites-content');
-            websitesContent.innerHTML = '<p>Loading...</p>';
+        // Debounce function
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
 
-            let q;
-            if (searchTerm.trim() === '') {
-                q = collection(db, "submissions");
-            } else {
-                const searchTermLower = searchTerm.toLowerCase();
-                q = query(collection(db, "submissions"), where("title", ">=", searchTermLower), where("title", "<=", searchTermLower + "\uf8ff"));
-            }
+        // Search function
+        async function searchSubmissions() {
+            const searchInput = document.getElementById("searchInput").value.trim().toLowerCase();
+            const resultsDiv = document.getElementById("searchResults");
+            const sidebarList = document.getElementById("websites-list");
+            resultsDiv.innerHTML = "<p>Searching...</p>";
+            sidebarList.innerHTML = "";
 
-            const querySnapshot = await getDocs(q);
-            websitesContent.innerHTML = '';
-            websitesList.innerHTML = '';
+            try {
+                const submissionsRef = collection(db, "submissions");
+                let q;
+                if (!searchInput) {
+                    q = query(submissionsRef, orderBy("title"), limit(10));
+                } else {
+                    q = query(
+                        submissionsRef,
+                        where("title", ">=", searchInput),
+                        where("title", "<=", searchInput + "\uf8ff"),
+                        orderBy("title"),
+                        limit(10)
+                    );
+                }
+                const querySnapshot = await getDocs(q);
 
-            querySnapshot.forEach((doc) => {
-                const website = doc.data();
-                const a = document.createElement('a');
-                a.href = website.link;
-                a.target = '_blank';
-                a.textContent = website.title;
-                websitesList.appendChild(a);
+                resultsDiv.innerHTML = "";
+                sidebarList.innerHTML = "";
 
-                const div = document.createElement('div');
-                div.className = 'website-item';
-                div.innerHTML = `<h2><a href="${website.link}" target="_blank">${website.title}</a></h2><hr>`;
-                websitesContent.appendChild(div);
-            });
+                if (querySnapshot.empty) {
+                    resultsDiv.innerHTML = `<p>No results found for "${searchInput || 'all submissions'}"</p>`;
+                    return;
+                }
 
-            if (websitesContent.innerHTML === '') {
-                websitesContent.innerHTML = '<p>No websites found.</p>';
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    // Sidebar link
+                    const sidebarLink = document.createElement("a");
+                    sidebarLink.href = data.url || "#";
+                    sidebarLink.target = "_blank";
+                    sidebarLink.textContent = data.title || "Untitled";
+                    sidebarList.appendChild(sidebarLink);
+
+                    // Main content result
+                    const resultItem = document.createElement("div");
+                    resultItem.className = "result-item";
+                    resultItem.innerHTML = `
+                        <a href="${data.url || '#'}" target="_blank">${data.title || "Untitled"}</a>
+                        <div class="description">${data.description || "No description available"}</div>
+                        <div class="url">${data.url || "No URL provided"}</div>
+                    `;
+                    resultsDiv.appendChild(resultItem);
+                });
+            } catch (error) {
+                console.error("Error searching submissions:", error);
+                resultsDiv.innerHTML = "<p>An error occurred. Please try again later.</p>";
             }
         }
 
-        document.getElementById('search-input').addEventListener('input', (event) => {
-            fetchWebsites(event.target.value);
+        // Event listeners
+        const searchBar = document.getElementById("searchInput");
+        const debouncedSearch = debounce(searchSubmissions, 300);
+        searchBar.addEventListener("input", debouncedSearch);
+        searchBar.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") searchSubmissions();
         });
 
+        // Theme toggle
         function toggleTheme() {
-            document.body.classList.toggle('dark-theme');
+            document.body.classList.toggle("dark-theme");
         }
 
-        // Fetch all websites on page load
-        fetchWebsites();
+        // Initial load
+        searchSubmissions();
     </script>
 </body>
-
 </html>
